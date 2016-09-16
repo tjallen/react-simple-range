@@ -1,16 +1,36 @@
 # react-simple-range
 
-_Module & readme WIP!_
-
 A simple React component for inputting a number between a min and a max value using a slider.
 
-## How to use
+## Install
 
-WIP
+```npm install react-simple-range --save```
+
+## Usage
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactSimpleRange from 'react-simple-range';
+
+ReactDOM.render(<ReactSimpleRange/>, rootElement);
+```
+
+## Props
+
+Name | Type | Description | Default | Required
+---|---|---|---|---
+min | number | Minimum number value of slider | 0 | Yes
+max | number | Maximum slider value | 100 | Yes
+step | number | Number inc/decremented when slider value is changed. The range of the slider (max minus min) should be evenly divisible by this value | 1 | Yes
+height | number | Height of the slider. This is converted to px and currently also effects the size of the thumb | 5 | No
+onChange | function | Function to fire when the slider value changes. Technically not required but the slider won't do much without it! | No operation. | No
 
 ## Development
 
-WIP
+Clone the repo
+
+```npm start``` in the repo directory to start webpack-dev-server and serve the examples directory.
 
 ## Commands
 
