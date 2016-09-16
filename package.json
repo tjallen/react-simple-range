@@ -15,7 +15,7 @@
     "input",
     "range"
   ],
-  "main": "lib/react-simple-range.js",
+  "main": "./lib/index.js",
   "author": {
     "name": "Thom Allen",
     "url": "https://github.com/tjallen"
