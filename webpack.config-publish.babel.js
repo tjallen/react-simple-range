@@ -37,6 +37,7 @@ module.exports = {
     chunkFilename: '[id].chunk.js',
     path: 'lib',
     publicPath: '/',
+    libraryTarget: 'umd',
   },
 
   plugins: getPlugins(),
