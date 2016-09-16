@@ -1,0 +1,21 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "emcaVersion": 7,
+      "emcafeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "strict": 0
+    },
+    "plugins": [
+        "react"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    }
+}
