@@ -8,6 +8,8 @@ A simple React component for inputting a number between a min and a max value us
 
 ## Usage
 
+Import React and this component using your chosen module bundler:
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,6 +17,11 @@ import ReactSimpleRange from 'react-simple-range';
 const rootElement = document.getElementById('app');
 
 ReactDOM.render(<ReactSimpleRange />, rootElement);
+```
+
+A pre-minified version is also provided if ya like:
+```
+import ReactSimpleRange from 'react-simple-range/lib/index-min';
 ```
 
 ## Props
@@ -41,7 +48,7 @@ Name | Effect
 `npm run test` | Does nothing, tests to be added
 `npm start` | Starts a webpack-dev-server, serving the example in `examples/` to `http://localhost:8080/`
 `npm run prepare` | Prepare the npm module. Runs `npm run test`, `npm run lib` and `npm run libmin`
-`npm lib` or `npm libmin` | Sends a build and minified build of this module to `lib/`
+`npm lib` or `npm libmin` | Bundles a build or minified build, respectively, to `lib/`
 
 ## Future additions
 

@@ -33,7 +33,7 @@ module.exports = {
   },
 
   output: {
-    filename: isProd ? 'index.min.js' : 'index.js',
+    filename: isProd ? 'index-min.js' : 'index.js',
     chunkFilename: '[id].chunk.js',
     path: 'lib',
     publicPath: '/',
