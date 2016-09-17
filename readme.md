@@ -32,15 +32,14 @@ Clone the repo
 
 ```npm start``` in the repo directory to start webpack-dev-server and serve the examples directory.
 
-## Commands
+## Dev commands
 
 Name | Effect
 :---|:---
+`npm run test` | Does nothing, tests to be added
 `npm start` | Starts a webpack-dev-server, serving the example in `examples/` to `http://localhost:8080/`
 `npm run prepare` | Prepare the npm module. Runs `npm run test`, `npm run lib` and `npm run libmin`
-`npm run test` | Does nothing, tests to be added
-`npm lib` | Sends a build of this module to `lib/`
-`npm libmin` | Sends a minified build of this module to `lib/` as `[name].min.js`
+`npm lib` or `npm libmin` | Sends a build and minified build of this module to `lib/`
 
 ## Future additions
 
