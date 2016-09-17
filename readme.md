@@ -1,5 +1,7 @@
 # react-simple-range
 
+[![npm version](https://badge.fury.io/js/react-simple-range.svg)](https://badge.fury.io/js/react-simple-range)
+
 A simple React component for inputting a number between a min and a max value using a slider.
 
 ## Install
