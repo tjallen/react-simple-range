@@ -15,13 +15,14 @@ function noOp() {
 
 export default class Slider extends Component {
   static propTypes = {
-    min: PropTypes.number.isRequired,
-    max: PropTypes.number.isRequired,
-    step: PropTypes.number.isRequired,
+    min: PropTypes.number,
+    max: PropTypes.number,
+    step: PropTypes.number,
     value: PropTypes.number,
     defaultValue: PropTypes.number,
     height: PropTypes.number,
     onChange: PropTypes.func,
+    className: PropTypes.string,
   }
   static defaultProps = {
     min: 0,
@@ -138,21 +139,23 @@ export default class Slider extends Component {
       height: `${this.state.height}px`,
     };
     return (
-      <div
-        ref="slider"
-        className={styles.slider}
-        onMouseDown={this.onMouseDown}
-        style={sliderStyle}
-      >
-        <SliderTrack
-          className={styles.track}
-          trackLength={this.state.ratio}
-          trackHeight={this.state.height}
-        />
-        <SliderThumb
-          thumbPosition={this.state.ratio}
-          height={this.state.height}
-        />
+      <div className={this.props.className}>
+        <div
+          ref="slider"
+          className={styles.slider}
+          onMouseDown={this.onMouseDown}
+          style={sliderStyle}
+        >
+          <SliderTrack
+            className={styles.track}
+            trackLength={this.state.ratio}
+            trackHeight={this.state.height}
+          />
+          <SliderThumb
+            thumbPosition={this.state.ratio}
+            height={this.state.height}
+          />
+        </div>
       </div>
     );
   }

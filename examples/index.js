@@ -17,19 +17,21 @@ function logOnChange(state) {
 
 ReactDOM.render(
   <div style={wrapStyle}>
-    <p>Generic example 1</p>
+    <h1>react-simple-range examples</h1>
+    <p>No props</p>
+    <ReactSimpleRange />
+    <p>step: 10, onChange logs to console, className passed down</p>
     <ReactSimpleRange
-      min={0}
-      max={100}
-      step={1}
+      step={10}
       onChange={logOnChange}
+      className="myClass"
     />
-    <p>Generic example 2</p>
+    <p>min: 25, max: 50, step: 5, height: 10, onChange logs to console</p>
     <div style={innerStyle}>
       <ReactSimpleRange
-        min={0}
-        max={100}
-        step={10}
+        min={25}
+        max={50}
+        step={5}
         height={10}
         onChange={logOnChange}
       />

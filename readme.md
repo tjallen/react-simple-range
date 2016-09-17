@@ -12,19 +12,21 @@ A simple React component for inputting a number between a min and a max value us
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSimpleRange from 'react-simple-range';
+const rootElement = document.getElementById('app');
 
-ReactDOM.render(<ReactSimpleRange/>, rootElement);
+ReactDOM.render(<ReactSimpleRange />, rootElement);
 ```
 
 ## Props
 
-Name | Type | Description | Default | Required
+Name | Type | Description | Default
 ---|---|---|---|---
-min | number | Minimum number value of slider | 0 | Yes
-max | number | Maximum slider value | 100 | Yes
-step | number | Number inc/decremented when slider value is changed. The range of the slider (max minus min) should be evenly divisible by this value | 1 | Yes
-height | number | Height of the slider. This is converted to px and currently also effects the size of the thumb | 5 | No
-onChange | function | Function to fire when the slider value changes. Technically not required but the slider won't do much without it! | No operation. | No
+min | number | Minimum number value of slider | 0
+max | number | Maximum slider value | 100
+step | number | Number inc/decremented when slider value is changed. The range of the slider (max minus min) should be evenly divisible by this value | 1
+height | number | Height of the slider. This is converted to px and currently also effects the size of the thumb | 5
+onChange | function | Function to fire when the slider value changes. Technically not required but the slider won't do much without it! | [NOOP](https://en.wikipedia.org/wiki/NOP)
+className | string | Optional extra CSS class to be applied to root div | undefined
 
 ## Development
 
