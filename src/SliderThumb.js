@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from './index.css'; // pass as prop instead
 
 const SliderThumb = ({ position, offsetTop, offsetLeft, height, color }) => {
@@ -16,5 +16,10 @@ const SliderThumb = ({ position, offsetTop, offsetLeft, height, color }) => {
   );
 };
 SliderThumb.propTypes = {
+  position: PropTypes.number,
+  offsetTop: PropTypes.string,
+  offsetLeft: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
 };
 export default SliderThumb;

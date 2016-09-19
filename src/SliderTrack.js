@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from './index.css'; // pass as prop instead
 
-const SliderTrack = ({ trackLength, trackHeight, color, }) => {
+const SliderTrack = ({ trackLength, color }) => {
   let trackStyles = {
     width: `${trackLength}%`,
-    height: `100%`,
+    height: '100%',
     backgroundColor: color,
   };
   return (
-    <div className={styles.track} style={trackStyles}></div>
+    <div style={trackStyles}></div>
   );
 };
 SliderTrack.propTypes = {
+  trackLength: PropTypes.number,
+  color: PropTypes.string,
 };
 export default SliderTrack;
