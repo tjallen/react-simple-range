@@ -3,13 +3,12 @@ import webpack from 'webpack';
 const isProd = (process.env.NODE_ENV === 'production');
 
 function getPlugins() {
-  let plugins = [];
-  
+  const plugins = [];
   // expose node_env to webpack
   plugins.push(new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: process.env.NODE_ENV,
-    }
+    },
   }));
   // conditionally add production uglify
   if (isProd) {
@@ -17,7 +16,6 @@ function getPlugins() {
       new webpack.optimize.UglifyJsPlugin(),
     );
   }
-  
   return plugins;
 }
 

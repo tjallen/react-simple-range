@@ -3,7 +3,6 @@
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 // cleaner paths
 const PATHS = {
@@ -21,8 +20,8 @@ module.exports = {
     ],
   },
   output: {
-    path: PATHS.dist,
-    filename: '[name].js',
+    path: PATHS.dev,
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -31,12 +30,6 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new HtmlWebpackPlugin({
       template: 'examples/example.html',
-    }),
-    new CleanWebpackPlugin([
-      PATHS.dist,
-    ], {
-      verbose: true,
-      dry: false,
     }),
   ],
   module: {
