@@ -8,9 +8,6 @@ import SliderTrack from './SliderTrack';
 import styles from './index.css';
 
 function noOp() {
-  console.warn(
-    `Slider component did not recieve an onChange prop.
-    \nRecommend passing down a function as onChange else this component is purely cosmetic`);
 }
 
 export default class Slider extends Component {
@@ -42,6 +39,13 @@ export default class Slider extends Component {
   }
   componentWillMount() {
     this.updateStateFromProps(this.props);
+  }
+  componentDidMount() {
+    if (this.props.onChange.length === 0) {
+      console.warn(
+        `Slider component did not recieve an onChange prop from ReactSimpleRange.
+        \nRecommend passing down a function as onChange else this component is purely cosmetic`);
+    }
   }
   componentWillReceiveProps(nextProps) {
     this.updateStateFromProps(nextProps);
@@ -104,7 +108,6 @@ export default class Slider extends Component {
     }
     // reduce over the potential notches and find which is the closest
     const match = notches.reduce((prev, curr) => {
-      console.log(`${curr - value} || ${prev - value}`);
       if (Math.abs(curr - value) < Math.abs(prev - value)) {
         return curr;
       }
