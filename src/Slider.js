@@ -128,6 +128,7 @@ export default class Slider extends Component {
   mouseMove(evt) {
     if (!this.state.drag) return;
     this.updateSliderValue(evt);
+    evt.stopPropagation();
   }
   updateStateFromProps(props) {
     const value = (props.value === undefined ? props.defaultValue : props.value);
