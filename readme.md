@@ -30,16 +30,28 @@ import ReactSimpleRange from 'react-simple-range/lib/index-min';
 
 ## Props
 
-Name | Type | Description | Default
+### Value & function
+Name | Type | Default | Description
 ---|---|---|---|---
-min | number | Minimum slider value | 0
-max | number | Maximum slider value | 100
-step | number | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this | 1
-onChange | function | Function to be called when the slider value changes | [NOOP](https://en.wikipedia.org/wiki/NOP)
-value | number | Set current value of slider | defaultValue
-defaultValue | number | Set initial value of slider | 0
-height | number | Height of the slider. This is converted to px and currently also effects the size of the thumb | 5
-className | string | Additional CSS class to be applied to root div | undefined
+min | number | 0 | Minimum slider value
+max | number | 100 | Maximum slider value
+step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
+onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
+value | number | props.defaultValue | Set current value of slider
+defaultValue | number | 0 | Set initial value of slider
+
+### Style & layout
+
+Name | Type | Default | Description
+---|---|---|---
+className | string | `undefined` | Additional CSS class to be apply to root div if required
+sliderHeight | string | `'6px'` | Height of slider
+sliderColor | string | `'#9E9E9E'` | Color of slider
+trackColor | string | `'#03A9F4'` | Color of track indicating progress
+thumbHeight | string | `'8px'` | Height (and width currently) of thumb
+thumbColor | string | `'#fff'` | Color of thumb
+thumbOffsetTop | string | `'-2px'` | Top property to apply to thumb
+thumbOffsetLeft | string | `'-5px'` | Margin-left property to apply to thumb
 
 ## Development
 
