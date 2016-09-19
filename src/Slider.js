@@ -133,7 +133,10 @@ export default class Slider extends Component {
     evt.stopPropagation();
   }
   updateStateFromProps(props) {
-    const value = (props.value === undefined ? props.defaultValue : props.value);
+    let value = props.value;
+    if (value === undefined) {
+      value = (props.defaultValue !== undefined ? props.defaultValue : 0);
+    }
     const { min, max, step, height } = props;
     const range = max - min;
     const ratio = (value - min) * 100 / (max - min);

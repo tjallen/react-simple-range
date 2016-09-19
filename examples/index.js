@@ -24,11 +24,17 @@ ReactDOM.render(
     <h1>react-simple-range examples</h1>
     <p>No props (all other sliders log their value to console)</p>
     <ReactSimpleRange />
-    <p>step: 10, passing down a class</p>
+    <p>step: 10, defaultValue: 50, passing down a class</p>
     <ReactSimpleRange
       step={10}
+      defaultValue={50}
       onChange={logOnChange}
-      className="myClass"
+    />
+    <p>step: 25, value: 25, passing down a class</p>
+    <ReactSimpleRange
+      step={25}
+      value={25}
+      onChange={logOnChange}
     />
     <p>min: 25, max: 50, step: 5, height: 10</p>
     <ReactSimpleRange
