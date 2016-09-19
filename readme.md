@@ -4,7 +4,7 @@
 
 A simple React component for inputting a number between a min and a max value using a slider.
 
-_nb: this package is in development and getting daily updates - production use not recommended while this message exists!_
+_nb: in development and getting regular updates - but early in life / not fully tested - production use not recommended yet_
 
 ## Install
 
@@ -38,15 +38,15 @@ step | number | `1`  | Number inc/decremented when slider value is changed. The 
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
-className | string | `undefined` | Additional CSS class to be apply to root div if required
-eventWrapperPadding | stirng | `3px 0` | Extra padding to apply to wrapper div with onMouseDown event for bonus clickability
+className | string | `undefined` | Additional CSS class to be applied to root div if required
+eventWrapperPadding | string | `3px 0` | Extra padding to apply to event wrapper div with for more accessible sliders
 sliderHeight | string | `'6px'` | Height of slider
 sliderColor | string | `'#9E9E9E'` | Color of slider
-trackColor | string | `'#03A9F4'` | Color of track indicating progress
-thumbHeight | string | `'8px'` | Height (and width currently) of thumb
+trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
+thumbHeight | string | `'8px'` | Height (+width currently) of thumb (aka slider handle / knob)
 thumbColor | string | `'#fff'` | Color of thumb
-thumbOffsetTop | string | `'-2px'` | Top property to apply to thumb
-thumbOffsetLeft | string | `'-5px'` | Margin-left property to apply to thumb
+thumbOffsetTop | string | `'-2px'` | Top CSS property to apply to thumb
+thumbOffsetLeft | string | `'-5px'` | Margin-left CSS property to apply to thumb
 
 ## Development
 
@@ -61,6 +61,7 @@ Name | Effect
 
 ## Future additions
 
+- Touch events
 - Slider orientation
 - Better perf
 - Other stuff
