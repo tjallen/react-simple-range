@@ -30,7 +30,6 @@ import ReactSimpleRange from 'react-simple-range/lib/index-min';
 
 ## Props
 
-### Value & function
 Name | Type | Default | Description
 ---|---|---|---|---
 min | number | 0 | Minimum slider value
@@ -39,11 +38,6 @@ step | number | 1  | Number inc/decremented when slider value is changed. The ra
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
 value | number | props.defaultValue | Set current value of slider
 defaultValue | number | 0 | Set initial value of slider
-
-### Style & layout
-
-Name | Type | Default | Description
----|---|---|---
 className | string | `undefined` | Additional CSS class to be apply to root div if required
 sliderHeight | string | `'6px'` | Height of slider
 sliderColor | string | `'#9E9E9E'` | Color of slider
