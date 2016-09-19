@@ -32,12 +32,12 @@ import ReactSimpleRange from 'react-simple-range/lib/index-min';
 
 Name | Type | Default | Description
 ---|---|---|---|---
-min | number | 0 | Minimum slider value
-max | number | 100 | Maximum slider value
-step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
+min | number | `0` | Minimum slider value
+max | number | `100` | Maximum slider value
+step | number | `1`  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
-value | number | props.defaultValue | Set current value of slider
-defaultValue | number | 0 | Set initial value of slider
+value | number | `props.defaultValue` | Set current value of slider
+defaultValue | number | `0` | Set initial value of slider
 className | string | `undefined` | Additional CSS class to be apply to root div if required
 sliderHeight | string | `'6px'` | Height of slider
 sliderColor | string | `'#9E9E9E'` | Color of slider
@@ -49,18 +49,14 @@ thumbOffsetLeft | string | `'-5px'` | Margin-left property to apply to thumb
 
 ## Development
 
-Clone the repo
+Clone the repo then run ```npm start``` in the cloned directory to start webpack-dev-server and serve the examples.
 
-```npm start``` in the repo directory to start webpack-dev-server and serve the examples directory.
-
-## Dev commands
+## Commands
 
 Name | Effect
 :---|:---
-`npm run test` | Does nothing, tests coming soon
 `npm start` | Starts a webpack-dev-server, currently serves the `examples/` directory to `http://localhost:8080/`
-`npm run prepare` | Prepare the npm module. Runs `npm run test`, `npm run lib` and `npm run libmin`
-`npm lib` or `npm libmin` | Bundles a build or minified build, respectively, to `lib/`
+`npm run test` | No effect for now - tests being added IMMINENTLY
 
 ## Future additions
 
