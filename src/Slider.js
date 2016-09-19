@@ -67,6 +67,8 @@ export default class Slider extends Component {
     // convert perc -> value then match value to notch as per props/state.step
     const rawValue = this.valueFromPercent(percent);
     value = this.calculateMatchingNotch(rawValue);
+    // avoid repeated updates of the same value
+    if (value === this.state.value) return;
     // percentage of the range to render the track/thumb to
     const ratio = (value - min) * 100 / (max - min);
     this.setState({
