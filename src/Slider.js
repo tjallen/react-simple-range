@@ -54,23 +54,25 @@ export default class Slider extends Component {
     const leftMouseButton = 0;
     if (evt.button !== leftMouseButton) return;
     this.updateSliderValue(evt);
-    this.setState({
-      drag: true,
-    });
+    this.setState({ drag: true });
     document.addEventListener('mousemove', this.mouseMove);
     document.addEventListener('mouseup', this.mouseUp);
     evt.preventDefault();
   }
-  getSliderLength() {
+  getSliderInfo() {
     const sl = this.refs.slider;
-    return sl.clientWidth;
+    const sliderInfo = {
+      bounds: sl.getBoundingClientRect(),
+      length: sl.clientWidth,
+    };
+    return sliderInfo;
   }
   updateSliderValue(evt) {
     const { max, min } = this.state;
     let { value } = this.state;
-    // compare clientX to slider length to get percentage
-    const x = evt.clientX - evt.target.getBoundingClientRect().left;
-    const totalLength = this.getSliderLength();
+    // compare position to slider length to get percentage
+    const x = evt.pageX - this.getSliderInfo().bounds.left;
+    const totalLength = this.getSliderInfo().length;
     const percent = this.clampValue(+(x / totalLength).toFixed(2), 0, 1);
     // convert perc -> value then match value to notch as per props/state.step
     const rawValue = this.valueFromPercent(percent);

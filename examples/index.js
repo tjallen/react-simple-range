@@ -6,11 +6,13 @@ import ReactSimpleRange from '../src/';
 
 const rootElement = document.getElementById('app');
 
-const wrapStyle = {
+const margin = {
   margin: '20px',
 };
-const innerStyle = {
-  width: '20%',
+
+const widthAndAutoMargins = {
+  width: '60%',
+  margin: '20px auto',
 };
 
 function logOnChange(state) {
@@ -18,23 +20,28 @@ function logOnChange(state) {
 }
 
 ReactDOM.render(
-  <div style={wrapStyle}>
+  <div style={margin}>
     <h1>react-simple-range examples</h1>
-    <p>No props</p>
+    <p>No props (all other sliders log their value to console)</p>
     <ReactSimpleRange />
-    <p>step: 10, onChange logs to console, className passed down</p>
+    <p>step: 10, passing down a class</p>
     <ReactSimpleRange
       step={10}
       onChange={logOnChange}
       className="myClass"
     />
-    <p>min: 25, max: 50, step: 5, height: 10, onChange logs to console</p>
-    <div style={innerStyle}>
+    <p>min: 25, max: 50, step: 5, height: 10</p>
+    <ReactSimpleRange
+      min={25}
+      max={50}
+      step={5}
+      height={10}
+      onChange={logOnChange}
+    />
+    <p>step: 1, container div testing</p>
+    <div style={widthAndAutoMargins}>
       <ReactSimpleRange
-        min={25}
-        max={50}
-        step={5}
-        height={10}
+        step={1}
         onChange={logOnChange}
       />
     </div>
