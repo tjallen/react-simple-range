@@ -4,6 +4,8 @@
 
 A simple React component for inputting a number between a min and a max value using a slider.
 
+_nb: this package is in development and getting daily updates - production use not recommended while this message exists!_
+
 ## Install
 
 ```npm install react-simple-range --save```

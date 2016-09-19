@@ -24,24 +24,28 @@ ReactDOM.render(
     <h1>react-simple-range examples</h1>
     <p>No props (all other sliders log their value to console)</p>
     <ReactSimpleRange />
-    <p>step: 10, defaultValue: 50, passing down a class</p>
+    <p>step: 10, defaultValue: 50</p>
     <ReactSimpleRange
       step={10}
       defaultValue={50}
       onChange={logOnChange}
     />
-    <p>step: 25, value: 25, passing down a class</p>
+    <p>step: 25, value: 25, edited slider/thumb height</p>
     <ReactSimpleRange
       step={25}
       value={25}
+      min={2}
+      max={99}
       onChange={logOnChange}
+      sliderHeight="10px"
+      thumbOffsetTop="-1px"
+      thumbHeight="10px"
     />
-    <p>min: 25, max: 50, step: 5, height: 10</p>
+    <p>min: 4, max: 50, step: 1</p>
     <ReactSimpleRange
-      min={25}
+      min={4}
       max={50}
-      step={5}
-      height={10}
+      step={1}
       onChange={logOnChange}
     />
     <p>step: 1, container div testing</p>
@@ -51,6 +55,17 @@ ReactDOM.render(
         onChange={logOnChange}
       />
     </div>
+    <p>more horrible custom styles</p>
+    <ReactSimpleRange
+      sliderColor="black"
+      sliderHeight="26px"
+      trackColor="brown"
+      thumbHeight="28px"
+      thumbColor="red"
+      thumbOffsetTop="-2px"
+      thumbOffsetLeft="-15px"
+      onChange={logOnChange}
+    />
   </div>,
   rootElement
 );

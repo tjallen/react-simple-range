@@ -1,5 +1,4 @@
 .slider {
-  background-color: grey;
   padding: 0px;
   margin: 10px auto;
   overflow-y: visible;
@@ -11,13 +10,8 @@
   cursor: pointer;
 }
 
-.track {
-  background-color: lightblue;
-}
-
 .thumb {
   position: absolute;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 100%;
-  background-color: #fff;
 }

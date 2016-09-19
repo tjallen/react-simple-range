@@ -17,16 +17,29 @@ export default class Slider extends Component {
     step: PropTypes.number,
     value: PropTypes.number,
     defaultValue: PropTypes.number,
-    height: PropTypes.number,
     onChange: PropTypes.func,
     className: PropTypes.string,
+    sliderHeight: PropTypes.string,
+    sliderColor: PropTypes.string,
+    trackColor: PropTypes.string,
+    thumbHeight: PropTypes.string,
+    thumbColor: PropTypes.string,
+    thumbOffsetTop: PropTypes.string,
+    thumbOffsetLeft: PropTypes.string,
   }
   static defaultProps = {
     min: 0,
     max: 100,
     step: 1,
-    height: 5,
     onChange: noOp,
+    // styles
+    sliderHeight: '6px',
+    sliderColor: '#9E9E9E',
+    trackColor: '#03A9F4',
+    thumbHeight: '8px',
+    thumbColor: '#fff',
+    thumbOffsetTop: '-2px',
+    thumbOffsetLeft: '-5px',
   }
   constructor(props) {
     super(props);
@@ -43,7 +56,7 @@ export default class Slider extends Component {
   componentDidMount() {
     if (this.props.onChange.length === 0) {
       console.warn(
-        `Slider component did not recieve an onChange prop from ReactSimpleRange.
+        `ReactSimpleRange component was not provided an onChange prop.
         \nRecommend passing down a function as onChange else this component is purely cosmetic`);
     }
   }
@@ -137,11 +150,10 @@ export default class Slider extends Component {
     if (value === undefined) {
       value = (props.defaultValue !== undefined ? props.defaultValue : 0);
     }
-    const { min, max, step, height } = props;
+    const { min, max, step } = props;
     const range = max - min;
-    const ratio = (value - min) * 100 / (max - min);
+    const ratio = Math.max((value - min), 0) * 100 / (max - min);
     this.setState({
-      height,
       value,
       min,
       max,
@@ -152,7 +164,8 @@ export default class Slider extends Component {
   }
   render() {
     const sliderStyle = {
-      height: `${this.state.height}px`,
+      height: `${this.props.sliderHeight}`,
+      backgroundColor: this.props.sliderColor,
     };
     return (
       <div className={this.props.className}>
@@ -165,11 +178,14 @@ export default class Slider extends Component {
           <SliderTrack
             className={styles.track}
             trackLength={this.state.ratio}
-            trackHeight={this.state.height}
+            color={this.props.trackColor}
           />
           <SliderThumb
-            thumbPosition={this.state.ratio}
-            height={this.state.height}
+            position={this.state.ratio}
+            offsetTop={this.props.thumbOffsetTop}
+            offsetLeft={this.props.thumbOffsetLeft}
+            height={this.props.thumbHeight}
+            color={this.props.thumbColor}
           />
         </div>
       </div>
