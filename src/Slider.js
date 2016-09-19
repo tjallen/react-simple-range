@@ -26,6 +26,7 @@ export default class Slider extends Component {
     thumbColor: PropTypes.string,
     thumbOffsetTop: PropTypes.string,
     thumbOffsetLeft: PropTypes.string,
+    eventWrapperPadding: PropTypes.string,
   }
   static defaultProps = {
     min: 0,
@@ -40,6 +41,7 @@ export default class Slider extends Component {
     thumbColor: '#fff',
     thumbOffsetTop: '-2px',
     thumbOffsetLeft: '-5px',
+    eventWrapperPadding: '5px 0',
   }
   constructor(props) {
     super(props);
@@ -163,6 +165,9 @@ export default class Slider extends Component {
     });
   }
   render() {
+    const eventWrapperStyle = {
+      padding: this.props.eventWrapperPadding,
+    };
     const sliderStyle = {
       height: `${this.props.sliderHeight}`,
       backgroundColor: this.props.sliderColor,
@@ -170,23 +175,28 @@ export default class Slider extends Component {
     return (
       <div className={this.props.className}>
         <div
-          ref="slider"
-          className={styles.slider}
+          className={styles.eventwrapper}
+          style={eventWrapperStyle}
           onMouseDown={this.onMouseDown}
-          style={sliderStyle}
         >
-          <SliderTrack
-            className={styles.track}
-            trackLength={this.state.ratio}
-            color={this.props.trackColor}
-          />
-          <SliderThumb
-            position={this.state.ratio}
-            offsetTop={this.props.thumbOffsetTop}
-            offsetLeft={this.props.thumbOffsetLeft}
-            height={this.props.thumbHeight}
-            color={this.props.thumbColor}
-          />
+          <div
+            ref="slider"
+            className={styles.slider}
+            style={sliderStyle}
+          >
+            <SliderTrack
+              className={styles.track}
+              trackLength={this.state.ratio}
+              color={this.props.trackColor}
+            />
+            <SliderThumb
+              position={this.state.ratio}
+              offsetTop={this.props.thumbOffsetTop}
+              offsetLeft={this.props.thumbOffsetLeft}
+              height={this.props.thumbHeight}
+              color={this.props.thumbColor}
+            />
+          </div>
         </div>
       </div>
     );

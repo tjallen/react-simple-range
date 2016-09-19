@@ -1,12 +1,11 @@
 .slider {
   padding: 0px;
-  margin: 10px auto;
   overflow-y: visible;
   width: 100%;
   position: relative;
 }
 
-.slider:hover {
+.eventwrapper:hover {
   cursor: pointer;
 }
 

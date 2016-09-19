@@ -39,6 +39,7 @@ onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
 className | string | `undefined` | Additional CSS class to be apply to root div if required
+eventWrapperPadding | stirng | `3px 0` | Extra padding to apply to wrapper div with onMouseDown event for bonus clickability
 sliderHeight | string | `'6px'` | Height of slider
 sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track indicating progress
