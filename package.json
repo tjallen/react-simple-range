@@ -57,6 +57,7 @@
     "start": "webpack-dev-server --inline --hot --colors",
     "libmin": "cross-env NODE_ENV=production webpack --config webpack.config-publish.babel.js",
     "lib": "webpack --config webpack.config-publish.babel.js",
-    "prepare": "npm run lib && npm run libmin"
+    "prepare": "npm run lib && npm run libmin",
+    "pub": "npm run prepare && npm publish"
   }
 }
