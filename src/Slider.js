@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-alert */
+/* eslint-disable no-console */
 
 import React, { Component, PropTypes } from 'react';
 
@@ -57,6 +57,10 @@ export default class Slider extends Component {
     document.addEventListener('mouseup', this.mouseUp);
     evt.preventDefault();
   }
+  getSliderLength() {
+    const sl = this.refs.slider;
+    return sl.clientWidth;
+  }
   updateSliderValue(evt) {
     const { max, min } = this.state;
     let { value } = this.state;
@@ -87,7 +91,6 @@ export default class Slider extends Component {
   }
   calculateMatchingNotch(value) {
     const { step, max, min } = this.state;
-    let match;
     const values = [];
     for (let i = min; i <= max; i++) {
       values.push(i);
@@ -99,8 +102,14 @@ export default class Slider extends Component {
         notches.push(s);
       }
     }
-    match = notches.reduce((prev, curr) => Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
-    // console.log(`${value} matched to closest notch ${match}`);
+    // reduce over the potential notches and find which is the closest
+    const match = notches.reduce((prev, curr) => {
+      console.log(`${curr - value} || ${prev - value}`);
+      if (Math.abs(curr - value) < Math.abs(prev - value)) {
+        return curr;
+      }
+      return prev;
+    });
     return match;
   }
   clampValue(val, min, max) {
@@ -116,10 +125,6 @@ export default class Slider extends Component {
   mouseMove(evt) {
     if (!this.state.drag) return;
     this.updateSliderValue(evt);
-  }
-  getSliderLength() {
-    const sl = this.refs.slider;
-    return sl.clientWidth;
   }
   updateStateFromProps(props) {
     const value = (props.value === undefined ? props.defaultValue : props.value);

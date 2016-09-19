@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSimpleRange from '../src/';
@@ -5,10 +7,10 @@ import ReactSimpleRange from '../src/';
 const rootElement = document.getElementById('app');
 
 const wrapStyle = {
-  // margin: '20px',
+  margin: '20px',
 };
 const innerStyle = {
-  // width: '20%',
+  width: '20%',
 };
 
 function logOnChange(state) {
