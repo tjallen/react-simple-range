@@ -56,7 +56,7 @@ export default class Slider extends Component {
     this.updateStateFromProps(this.props);
   }
   componentDidMount() {
-    if (this.props.onChange.length === 0) {
+    if (this.props.onChange.name === 'noOp') {
       console.warn(
         `ReactSimpleRange component was not provided an onChange prop.
         \nRecommend passing down a function as onChange else this component is purely cosmetic`);
