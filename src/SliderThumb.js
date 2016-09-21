@@ -6,11 +6,11 @@ const SliderThumb = ({ position, offsetTop, offsetLeft, size, color, vertical })
     // pointerEvents: 'none',
     left: `${position}%`,
     top: '0px',
-    marginTop: `${offsetTop}`,
-    height: `${size}`,
-    width: `${size}`,
+    marginTop: `${offsetTop}px`,
+    height: `${size}px`,
+    width: `${size}px`,
+    marginLeft: `${offsetLeft}px`,
     backgroundColor: color,
-    marginLeft: `${offsetLeft}`,
   };
   if (vertical) {
     thumbStyles.top = '';
@@ -23,9 +23,9 @@ const SliderThumb = ({ position, offsetTop, offsetLeft, size, color, vertical })
 };
 SliderThumb.propTypes = {
   position: PropTypes.number,
-  offsetTop: PropTypes.string,
-  offsetLeft: PropTypes.string,
-  size: PropTypes.string,
+  offsetTop: PropTypes.number,
+  offsetLeft: PropTypes.number,
+  size: PropTypes.number,
   color: PropTypes.string,
   vertical: PropTypes.bool,
 };

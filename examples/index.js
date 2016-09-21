@@ -38,9 +38,9 @@ ReactDOM.render(
       min={2}
       max={99}
       onChange={logOnChange}
-      sliderSize="10px"
-      thumbOffsetTop="-1px"
-      thumbSize="10px"
+      sliderSize={10}
+      thumbOffsetTop={-1}
+      thumbSize={10}
     />
     <p>min: 4, max: 50, step: 1</p>
     <ReactSimpleRange
@@ -60,12 +60,12 @@ ReactDOM.render(
     <p>more horrible custom styles</p>
     <ReactSimpleRange
       sliderColor="black"
-      sliderSize="26px"
       trackColor="brown"
-      thumbSize="28px"
       thumbColor="red"
-      thumbOffsetTop="-2px"
-      thumbOffsetLeft="-15px"
+      sliderSize={26}
+      thumbSize={28}
+      thumbOffsetTop={-2}
+      thumbOffsetLeft={-15}
       onChange={logOnChange}
     />
   </div>,

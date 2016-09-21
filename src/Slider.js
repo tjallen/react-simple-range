@@ -19,13 +19,13 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
-    sliderSize: PropTypes.string,
+    sliderSize: PropTypes.number,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
-    thumbSize: PropTypes.string,
     thumbColor: PropTypes.string,
-    thumbOffsetTop: PropTypes.string,
-    thumbOffsetLeft: PropTypes.string,
+    thumbSize: PropTypes.number,
+    thumbOffsetTop: PropTypes.number,
+    thumbOffsetLeft: PropTypes.number,
   }
   static defaultProps = {
     min: 0,
@@ -34,13 +34,13 @@ export default class Slider extends Component {
     onChange: noOp,
     vertical: false,
     // styles
-    sliderSize: '6px',
+    sliderSize: 6,
     sliderColor: '#9E9E9E',
     trackColor: '#03A9F4',
-    thumbSize: '8px',
     thumbColor: '#fff',
-    thumbOffsetTop: '-2px',
-    thumbOffsetLeft: '-5px',
+    thumbSize: 8,
+    thumbOffsetTop: -2,
+    thumbOffsetLeft: -5,
   }
   constructor(props) {
     super(props);
@@ -175,14 +175,14 @@ export default class Slider extends Component {
   render() {
     const { vertical, sliderSize } = this.props;
     const sliderStyle = {
-      height: sliderSize,
+      height: `${sliderSize}px`,
       width: '100%',
       backgroundColor: this.props.sliderColor,
       position: 'relative',
     };
     if (vertical) {
       sliderStyle.height = '100%';
-      sliderStyle.width = sliderSize;
+      sliderStyle.width = `${sliderSize}px`;
     }
     return (
       <div
