@@ -13,6 +13,7 @@ const margin = {
 const widthAndAutoMargins = {
   width: '60%',
   margin: '20px auto',
+  height: '140px',
 };
 
 function logOnChange(state) {
@@ -30,7 +31,7 @@ ReactDOM.render(
       defaultValue={50}
       onChange={logOnChange}
     />
-    <p>step: 25, value: 25, edited slider/thumb height</p>
+    <p>step: 25, value: 25, edited slider/thumb size</p>
     <ReactSimpleRange
       step={25}
       value={25}
@@ -39,7 +40,7 @@ ReactDOM.render(
       onChange={logOnChange}
       sliderSize="10px"
       thumbOffsetTop="-1px"
-      thumbHeight="10px"
+      thumbSize="10px"
     />
     <p>min: 4, max: 50, step: 1</p>
     <ReactSimpleRange
@@ -60,7 +61,7 @@ ReactDOM.render(
       sliderColor="black"
       sliderSize="26px"
       trackColor="brown"
-      thumbHeight="28px"
+      thumbSize="28px"
       thumbColor="red"
       thumbOffsetTop="-2px"
       thumbOffsetLeft="-15px"

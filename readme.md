@@ -23,11 +23,6 @@ const rootElement = document.getElementById('app');
 ReactDOM.render(<ReactSimpleRange />, rootElement);
 ```
 
-Or the pre-minified version:
-```
-import ReactSimpleRange from 'react-simple-range/lib/index-min';
-```
-
 ## Props
 
 Name | Type | Default | Description
@@ -38,15 +33,14 @@ step | number | `1`  | Number inc/decremented when slider value is changed. The 
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
-className | string | `undefined` | Additional CSS class to be applied to root div if required
-eventWrapperPadding | string | `3px 0` | Extra padding to apply to event wrapper div with for more accessible sliders
-sliderHeight | string | `'6px'` | Height of slider
+vertical | boolean | false | (WIP) Set slider to vertical if true, horizontal if false
+sliderSize | string | `'6px'` | Height of slider if horizontal, width if vertical (the other dimension is always 100%)
 sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
 thumbHeight | string | `'8px'` | Height (+width currently) of thumb (aka slider handle / knob)
 thumbColor | string | `'#fff'` | Color of thumb
-thumbOffsetTop | string | `'-2px'` | Top CSS property to apply to thumb
-thumbOffsetLeft | string | `'-5px'` | Margin-left CSS property to apply to thumb
+thumbOffsetTop | string | `'-2px'` | `margin-top` CSS property to apply to thumb
+thumbOffsetLeft | string | `'-5px'` | `margin-left` CSS property to apply to thumb
 
 ## Development
 
@@ -62,6 +56,5 @@ Name | Effect
 ## Future additions
 
 - Touch events
-- Slider orientation
 - Better perf
 - Other stuff

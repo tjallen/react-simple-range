@@ -19,15 +19,13 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
-    className: PropTypes.string,
     sliderSize: PropTypes.string,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
-    thumbHeight: PropTypes.string,
+    thumbSize: PropTypes.string,
     thumbColor: PropTypes.string,
     thumbOffsetTop: PropTypes.string,
     thumbOffsetLeft: PropTypes.string,
-    eventWrapperPadding: PropTypes.string,
   }
   static defaultProps = {
     min: 0,
@@ -39,11 +37,10 @@ export default class Slider extends Component {
     sliderSize: '6px',
     sliderColor: '#9E9E9E',
     trackColor: '#03A9F4',
-    thumbHeight: '8px',
+    thumbSize: '8px',
     thumbColor: '#fff',
     thumbOffsetTop: '-2px',
     thumbOffsetLeft: '-5px',
-    eventWrapperPadding: '5px 0',
   }
   constructor(props) {
     super(props);
@@ -167,41 +164,41 @@ export default class Slider extends Component {
     });
   }
   render() {
-    const eventWrapperStyle = {
-      padding: this.props.eventWrapperPadding,
-    };
+    const { vertical, sliderSize } = this.props;
     const sliderStyle = {
-      height: `${this.props.sliderSize}`,
+      height: sliderSize,
       width: '100%',
       backgroundColor: this.props.sliderColor,
+      position: 'relative',
     };
+    if (vertical) {
+      sliderStyle.height = '100%';
+      sliderStyle.width = sliderSize;
+    }
     return (
-      <div className={this.props.className}>
+      <div
+        className={styles.eventwrapper}
+        onMouseDown={this.onMouseDown}
+      >
         <div
-          className={styles.eventwrapper}
-          style={eventWrapperStyle}
-          onMouseDown={this.onMouseDown}
+          ref="slider"
+          className={styles.slider}
+          style={sliderStyle}
         >
-          <div
-            ref="slider"
-            className={styles.slider}
-            style={sliderStyle}
-          >
-            <SliderTrack
-              className={styles.track}
-              trackLength={this.state.ratio}
-              trackHeight={100}
-              color={this.props.trackColor}
-            />
-            <SliderThumb
-              positionLeft={this.state.ratio}
-              positionTop={0}
-              offsetTop={this.props.thumbOffsetTop}
-              offsetLeft={this.props.thumbOffsetLeft}
-              height={this.props.thumbHeight}
-              color={this.props.thumbColor}
-            />
-          </div>
+          <SliderTrack
+            className={styles.track}
+            trackLength={this.state.ratio}
+            color={this.props.trackColor}
+            vertical={vertical}
+          />
+          <SliderThumb
+            position={this.state.ratio}
+            offsetTop={this.props.thumbOffsetTop}
+            offsetLeft={this.props.thumbOffsetLeft}
+            size={this.props.thumbSize}
+            color={this.props.thumbColor}
+            vertical={vertical}
+          />
         </div>
       </div>
     );

@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.eventwrapper {
+  height: 100%; /* required for slider height to fill container until we use flex */
+}
+
 .eventwrapper:hover {
   cursor: pointer;
 }
