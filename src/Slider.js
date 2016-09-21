@@ -18,8 +18,9 @@ export default class Slider extends Component {
     value: PropTypes.number,
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
+    vertical: PropTypes.bool,
     className: PropTypes.string,
-    sliderHeight: PropTypes.string,
+    sliderSize: PropTypes.string,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
     thumbHeight: PropTypes.string,
@@ -33,8 +34,9 @@ export default class Slider extends Component {
     max: 100,
     step: 1,
     onChange: noOp,
+    vertical: false,
     // styles
-    sliderHeight: '6px',
+    sliderSize: '6px',
     sliderColor: '#9E9E9E',
     trackColor: '#03A9F4',
     thumbHeight: '8px',
@@ -169,7 +171,8 @@ export default class Slider extends Component {
       padding: this.props.eventWrapperPadding,
     };
     const sliderStyle = {
-      height: `${this.props.sliderHeight}`,
+      height: `${this.props.sliderSize}`,
+      width: '100%',
       backgroundColor: this.props.sliderColor,
     };
     return (
@@ -187,10 +190,12 @@ export default class Slider extends Component {
             <SliderTrack
               className={styles.track}
               trackLength={this.state.ratio}
+              trackHeight={100}
               color={this.props.trackColor}
             />
             <SliderThumb
-              position={this.state.ratio}
+              positionLeft={this.state.ratio}
+              positionTop={0}
               offsetTop={this.props.thumbOffsetTop}
               offsetLeft={this.props.thumbOffsetLeft}
               height={this.props.thumbHeight}

@@ -37,7 +37,7 @@ ReactDOM.render(
       min={2}
       max={99}
       onChange={logOnChange}
-      sliderHeight="10px"
+      sliderSize="10px"
       thumbOffsetTop="-1px"
       thumbHeight="10px"
     />
@@ -48,17 +48,17 @@ ReactDOM.render(
       step={1}
       onChange={logOnChange}
     />
-    <p>step: 1, container div testing</p>
+    <p>vertical: true, container div</p>
     <div style={widthAndAutoMargins}>
       <ReactSimpleRange
-        step={1}
         onChange={logOnChange}
+        vertical
       />
     </div>
     <p>more horrible custom styles</p>
     <ReactSimpleRange
       sliderColor="black"
-      sliderHeight="26px"
+      sliderSize="26px"
       trackColor="brown"
       thumbHeight="28px"
       thumbColor="red"

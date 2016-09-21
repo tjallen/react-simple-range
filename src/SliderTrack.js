@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
-import styles from './index.css'; // pass as prop instead
 
-const SliderTrack = ({ trackLength, color }) => {
+const SliderTrack = ({ trackLength, trackHeight, color }) => {
   let trackStyles = {
     width: `${trackLength}%`,
-    height: '100%',
+    height: `${trackHeight}%`,
     backgroundColor: color,
   };
   return (
@@ -13,6 +12,7 @@ const SliderTrack = ({ trackLength, color }) => {
 };
 SliderTrack.propTypes = {
   trackLength: PropTypes.number,
+  trackHeight: PropTypes.number,
   color: PropTypes.string,
 };
 export default SliderTrack;
