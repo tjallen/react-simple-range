@@ -1,6 +1,6 @@
 {
   "name": "react-simple-range",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "A simple React component to input a number between a min and a max value using a slider",
   "keywords": [
     "react",
@@ -57,7 +57,6 @@
     "start": "webpack-dev-server --inline --hot --colors",
     "libmin": "cross-env NODE_ENV=production webpack --config webpack.config-publish.babel.js",
     "lib": "webpack --config webpack.config-publish.babel.js",
-    "prepare": "npm run lib && npm run libmin",
-    "pub": "npm run prepare && npm publish"
+    "pub": "npm run lib && npm publish"
   }
 }

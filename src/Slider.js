@@ -78,16 +78,25 @@ export default class Slider extends Component {
     const sliderInfo = {
       bounds: sl.getBoundingClientRect(),
       length: sl.clientWidth,
+      height: sl.clientHeight,
     };
     return sliderInfo;
   }
   updateSliderValue(evt) {
     const { max, min } = this.state;
     let { value } = this.state;
+    const { vertical } = this.props;
     // compare position to slider length to get percentage
-    const x = evt.pageX - this.getSliderInfo().bounds.left;
-    const totalLength = this.getSliderInfo().length;
-    const percent = this.clampValue(+(x / totalLength).toFixed(2), 0, 1);
+    let position;
+    let lengthOrHeight;
+    if (!vertical) {
+      position = evt.pageX - this.getSliderInfo().bounds.left;
+      lengthOrHeight = this.getSliderInfo().length;
+    } else {
+      lengthOrHeight = this.getSliderInfo().height;
+      position = lengthOrHeight - (evt.pageY - this.getSliderInfo().bounds.top);
+    }
+    const percent = this.clampValue(+(position / lengthOrHeight).toFixed(2), 0, 1);
     // convert perc -> value then match value to notch as per props/state.step
     const rawValue = this.valueFromPercent(percent);
     value = this.calculateMatchingNotch(rawValue);

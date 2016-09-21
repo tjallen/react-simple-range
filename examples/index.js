@@ -11,7 +11,7 @@ const margin = {
 };
 
 const widthAndAutoMargins = {
-  width: '60%',
+  width: '10px',
   margin: '20px auto',
   height: '140px',
 };
@@ -53,6 +53,7 @@ ReactDOM.render(
     <div style={widthAndAutoMargins}>
       <ReactSimpleRange
         onChange={logOnChange}
+        step={5}
         vertical
       />
     </div>
