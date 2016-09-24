@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSimpleRange from '../src/';
-
+import myIcon from './icons/ic_volume_up_24px.svg';
 const rootElement = document.getElementById('app');
 
 const margin = {
@@ -19,6 +19,8 @@ const widthAndAutoMargins = {
 function logOnChange(state) {
   console.log(state.value);
 }
+
+const hereIsMyIcon = <img src={myIcon} alt="myIcon" />;
 
 ReactDOM.render(
   <div style={margin}>
@@ -42,19 +44,21 @@ ReactDOM.render(
       thumbOffsetTop={-1}
       thumbSize={10}
     />
-    <p>min: 4, max: 50, step: 1</p>
+    <p>min: 4, max: 50, step: 1, icon (WIP)</p>
     <ReactSimpleRange
       min={4}
       max={50}
       step={1}
       onChange={logOnChange}
+      icon={myIcon}
     />
-    <p>vertical: true, container div</p>
+    <p>vertical: true, container div, icon (WIP)</p>
     <div style={widthAndAutoMargins}>
       <ReactSimpleRange
         onChange={logOnChange}
         step={5}
         vertical
+        icon={hereIsMyIcon}
       />
     </div>
     <p>more horrible custom styles</p>

@@ -43,6 +43,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
       },
+      {
+        test: /\.(svg|png|gif|jpe?g)$/,
+        loaders: [
+          'url?limit=5000&name=images/[name][hash:6].[ext]',
+          'image-webpack',
+        ],
+      },
     ],
   },
 };

@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 
+import SliderIcon from './SliderIcon';
 import SliderThumb from './SliderThumb';
 import SliderTrack from './SliderTrack';
 
@@ -19,6 +20,7 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
+    icon: PropTypes.bool,
     sliderSize: PropTypes.number,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
@@ -33,6 +35,7 @@ export default class Slider extends Component {
     step: 1,
     onChange: noOp,
     vertical: false,
+    icon: false,
     // styles
     sliderSize: 6,
     sliderColor: '#9E9E9E',
@@ -173,7 +176,7 @@ export default class Slider extends Component {
     });
   }
   render() {
-    const { vertical, sliderSize } = this.props;
+    const { vertical, sliderSize, icon } = this.props;
     const sliderStyle = {
       height: `${sliderSize}px`,
       width: '100%',
@@ -189,6 +192,7 @@ export default class Slider extends Component {
         className={styles.eventwrapper}
         onMouseDown={this.onMouseDown}
       >
+      {icon ? <SliderIcon /> : null}
         <div
           ref="slider"
           className={styles.slider}
