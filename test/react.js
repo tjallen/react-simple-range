@@ -3,6 +3,8 @@
 import React from 'react';
 import expect from 'expect';
 import { createRenderer } from 'react-addons-test-utils';
+import expectJSX from 'expect-jsx';
+expect.extend(expectJSX);
 
 import ReactSimpleRange from '../src/Slider.js';
 
@@ -12,6 +14,6 @@ describe('Slider', () => {
     renderer.render(<ReactSimpleRange />);
     const actualElement = renderer.getRenderOutput();
     const expectedElement = <div>Foo</div>;
-    expect(actualElement).toEqual(expectedElement);
+    expect(actualElement).toEqualJSX(expectedElement);
   });
 });
