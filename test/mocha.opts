@@ -1,0 +1,2 @@
+--require test/babelhook
+--require test/css-null-compiler
