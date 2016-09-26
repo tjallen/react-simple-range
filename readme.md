@@ -51,7 +51,8 @@ Clone the repo then run ```npm start``` in the cloned directory to start webpack
 Name | Effect
 :---|:---
 `npm start` | Starts a webpack-dev-server, currently serves the `examples/` directory to `http://localhost:8080/`
-`npm run test` | No effect for now - tests being added IMMINENTLY...ish
+`npm run test` | Runs tests with `mocha`
+`npm run test:watch` | Runs tests in watch mode with `mocha --watch`
 
 ## Future additions
 

@@ -15,16 +15,19 @@ describe('ReactSimpleRange', () => {
   it('renders without exploding', () => {
     expect(wrapper.length).toEqual(1);
   });
+  it('has the correct default props');
+  it('can be clicked to change the value');
+  it('can be passed a function as onChange to fire onClick');
   it('contains a SliderTrack', () => {
     expect(wrapper.find('SliderTrack').length).toEqual(1);
   });
   it('contains a SliderThumb', () => {
     expect(wrapper.find('SliderThumb').length).toEqual(1);
   });
-  it('passes a specified value to SliderTrack as props.trackLength', () => {
+  it('passes a specified value prop to SliderTrack as props.trackLength', () => {
     expect(wrapperWithValue.find('SliderTrack').prop('trackLength')).toEqual(69);
   });
-  it('passes a specified value to SliderThumb as props.position', () => {
+  it('passes a specified value prop to SliderThumb as props.position', () => {
     expect(wrapperWithValue.find('SliderThumb').prop('position')).toEqual(69);
   });
 });
@@ -33,10 +36,11 @@ describe('SliderTrack', () => {
   it('has a default value of 0', () => {
     expect(wrapper.find('SliderTrack').prop('trackLength')).toEqual(0);
   });
-  it('overrides the default trackLength prop if passed defaultValue prop', () => {
+  it('has the correct default props');
+  it('overrides default trackLength prop if passed defaultValue prop', () => {
     expect(wrapperWithDefaultValue.find('SliderTrack').prop('trackLength')).toEqual(11);
   });
-  it('overrides the default trackLength prop if passed value prop', () => {
+  it('overrides default trackLength prop if passed value prop', () => {
     expect(wrapperWithValue.find('SliderTrack').prop('trackLength')).toEqual(69);
   });
 });
@@ -45,10 +49,11 @@ describe('SliderThumb', () => {
   it('has a default value of 0', () => {
     expect(wrapper.find('SliderThumb').prop('position')).toEqual(0);
   });
-  it('overrides the default position prop if passed defaultValue prop', () => {
+  it('has the correct default props');
+  it('overrides default position prop if passed defaultValue prop', () => {
     expect(wrapperWithDefaultValue.find('SliderThumb').prop('position')).toEqual(11);
   });
-  it('overrides the default position prop if passed value prop', () => {
+  it('overrides default position prop if passed value prop', () => {
     expect(wrapperWithValue.find('SliderThumb').prop('position')).toEqual(69);
   });
 });
