@@ -26,10 +26,10 @@ describe('ReactSimpleRange', () => {
   it('can override the default value');
   it('passes a specified value to SliderTrack as props.trackLength', () => {
     const wrapper = shallow(<ReactSimpleRange value={69} />);
-    expect(wrapper.find('SliderTrack').prop('trackLength')).toEqual(420);
+    expect(wrapper.find('SliderTrack').prop('trackLength')).toEqual(69);
   });
   it('passes a specified value to SliderThumb as props.position', () => {
     const wrapper = shallow(<ReactSimpleRange value={69} />);
-    expect(wrapper.find('SliderThumb').prop('position')).toEqual(420);
+    expect(wrapper.find('SliderThumb').prop('position')).toEqual(69);
   });
 });
