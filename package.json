@@ -57,6 +57,7 @@
   },
   "scripts": {
     "test": "mocha",
+    "test:watch": "mocha --watch",
     "start": "webpack-dev-server --inline --hot --colors",
     "libmin": "cross-env NODE_ENV=production webpack --config webpack.config-publish.babel.js",
     "lib": "webpack --config webpack.config-publish.babel.js",
