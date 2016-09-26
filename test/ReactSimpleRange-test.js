@@ -12,7 +12,6 @@ import ReactSimpleRange from '../src/index.js';
 describe('ReactSimpleRange', () => {
   it('renders without exploding', () => {
     const wrapper = shallow(<ReactSimpleRange />);
-    // console.log(wrapper.debug());
     expect(wrapper.length).toEqual(1);
   });
   it('contains a SliderTrack', () => {
@@ -25,6 +24,12 @@ describe('ReactSimpleRange', () => {
   });
   it('has a default value');
   it('can override the default value');
-  it('passes down a specified value to SliderTrack');
-  it('passes down a specified value to SliderThumb');
+  it('passes a specified value to SliderTrack as props.trackLength', () => {
+    const wrapper = shallow(<ReactSimpleRange value={69} />);
+    expect(wrapper.find('SliderTrack').prop('trackLength')).toEqual(420);
+  });
+  it('passes a specified value to SliderThumb as props.position', () => {
+    const wrapper = shallow(<ReactSimpleRange value={69} />);
+    expect(wrapper.find('SliderThumb').prop('position')).toEqual(420);
+  });
 });
