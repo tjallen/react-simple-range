@@ -17,11 +17,11 @@ describe('ReactSimpleRange', () => {
   });
   it('contains a SliderTrack', () => {
     const wrapper = shallow(<ReactSimpleRange />);
-    expect(wrapper.find('SliderFrack').length).toEqual(1);
+    expect(wrapper.find('SliderTrack').length).toEqual(1);
   });
   it('contains a SliderThumb', () => {
     const wrapper = shallow(<ReactSimpleRange />);
-    expect(wrapper.find('SliderBum').length).toEqual(1);
+    expect(wrapper.find('SliderThumb').length).toEqual(1);
   });
   it('has a default value');
   it('can override the default value');
