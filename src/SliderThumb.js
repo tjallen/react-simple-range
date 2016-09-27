@@ -1,34 +1,40 @@
 import React, { PropTypes } from 'react';
-import styles from './index.css'; // pass as prop instead
 
-const SliderThumb = ({ customThumb, position, offsetTop, offsetLeft, size, color, vertical }) => {
+const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vertical }) => {
   let defaultThumb;
-  let thumbWrapperStyles = {
-    position: 'absolute',
-    left: `${position}%`,
-    top: '0px',
-    // marginTop: `${offsetTop}px`,
-    // marginLeft: `${offsetLeft}px`,
-    // pointerEvents: 'none',
-  };
-  if (vertical) {
-    thumbWrapperStyles.top = '';
-    thumbWrapperStyles.left = '3px'; // calc this when props redone
-    thumbWrapperStyles.bottom = `${position}%`;
+  let thumbWrapperStyles;
+  if (!vertical) {
+    thumbWrapperStyles = {
+      position: 'absolute',
+      left: `${position}%`,
+      top: '0px',
+      marginLeft: `-${thumbSize * 0.5}px`,
+      marginTop: `-${(thumbSize - sliderSize) * 0.5}px`,
+      // opacity: '0.6',
+    };
+  } else {
+    thumbWrapperStyles = {
+      position: 'absolute',
+      bottom: `${position}%`,
+      marginBottom: `-${thumbSize * 0.5}px`,
+      marginLeft: `-${(thumbSize - sliderSize) * 0.5}px`,
+      // opacity: '0.6',
+    };
   }
   if (!customThumb) {
     const defaultThumbStyles = {
-      // backgroundColor: `${color}`,
-      backgroundColor: 'red',
+      backgroundColor: `${color}`,
+      // backgroundColor: 'red',
       borderRadius: '100%',
-      height: `${size * 1.5}px`,
-      width: `${size * 1.5}px`,
+      height: `${thumbSize}px`,
+      width: `${thumbSize}px`,
     };
     defaultThumb = <div style={defaultThumbStyles}></div>;
   }
   return (
-    <div className={styles.thumb} style={thumbWrapperStyles}>
-      {customThumb ? customThumb : defaultThumb}
+    <div style={thumbWrapperStyles}>
+      {customThumb}
+      {defaultThumb && defaultThumb}
     </div>
   );
 };

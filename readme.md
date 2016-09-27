@@ -36,11 +36,11 @@ defaultValue | number | `0` | Set initial value of slider
 vertical | boolean | false | Set slider to vertical if true, horizontal if false
 sliderSize | number | `6` | Px height of slider if horizontal, width if vertical (the other dimension is always 100%)
 thumbSize | number | `8` | Px height+width of thumb (aka slider handle / knob)
-thumbOffsetTop | number | `-2` | `margin-top` CSS property to apply to thumb in px
-thumbOffsetLeft | number | `-5` | `margin-left` CSS property to apply to thumb in px
 sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
 thumbColor | string | `'#fff'` | Color of thumb
+customThumb | | |
+icon | | |
 
 ## Development
 
