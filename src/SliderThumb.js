@@ -1,24 +1,35 @@
 import React, { PropTypes } from 'react';
 import styles from './index.css'; // pass as prop instead
 
-const SliderThumb = ({ position, offsetTop, offsetLeft, size, color, vertical }) => {
-  let thumbStyles = {
-    // pointerEvents: 'none',
+const SliderThumb = ({ customThumb, position, offsetTop, offsetLeft, size, color, vertical }) => {
+  let defaultThumb;
+  let thumbWrapperStyles = {
+    position: 'absolute',
     left: `${position}%`,
     top: '0px',
-    marginTop: `${offsetTop}px`,
-    height: `${size}px`,
-    width: `${size}px`,
-    marginLeft: `${offsetLeft}px`,
-    backgroundColor: color,
+    // marginTop: `${offsetTop}px`,
+    // marginLeft: `${offsetLeft}px`,
+    // pointerEvents: 'none',
   };
   if (vertical) {
-    thumbStyles.top = '';
-    thumbStyles.left = '3px'; // calc this when props redone
-    thumbStyles.bottom = `${position}%`;
+    thumbWrapperStyles.top = '';
+    thumbWrapperStyles.left = '3px'; // calc this when props redone
+    thumbWrapperStyles.bottom = `${position}%`;
+  }
+  if (!customThumb) {
+    const defaultThumbStyles = {
+      // backgroundColor: `${color}`,
+      backgroundColor: 'red',
+      borderRadius: '100%',
+      height: `${size * 1.5}px`,
+      width: `${size * 1.5}px`,
+    };
+    defaultThumb = <div style={defaultThumbStyles}></div>;
   }
   return (
-    <div className={styles.thumb} style={thumbStyles}></div>
+    <div className={styles.thumb} style={thumbWrapperStyles}>
+      {customThumb ? customThumb : defaultThumb}
+    </div>
   );
 };
 SliderThumb.propTypes = {

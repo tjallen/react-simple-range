@@ -20,7 +20,7 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
-    icon: PropTypes.bool,
+    icon: PropTypes.node,
     sliderSize: PropTypes.number,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
@@ -38,9 +38,9 @@ export default class Slider extends Component {
     icon: false,
     // styles
     sliderSize: 6,
-    sliderColor: '#9E9E9E',
-    trackColor: '#03A9F4',
-    thumbColor: '#fff',
+    sliderColor: '#B9B9B9',
+    trackColor: '#009688',
+    thumbColor: '#009688',
     thumbSize: 8,
     thumbOffsetTop: -2,
     thumbOffsetLeft: -5,
@@ -205,6 +205,7 @@ export default class Slider extends Component {
             vertical={vertical}
           />
           <SliderThumb
+            customThumb={this.props.children}
             position={this.state.ratio}
             offsetTop={this.props.thumbOffsetTop}
             offsetLeft={this.props.thumbOffsetLeft}

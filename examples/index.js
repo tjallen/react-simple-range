@@ -21,6 +21,7 @@ function logOnChange(state) {
 }
 
 const hereIsMyIcon = <img src={myIcon} alt="myIcon" />;
+const anotherIcon = <div>Icon</div>
 
 ReactDOM.render(
   <div style={margin}>
@@ -44,14 +45,16 @@ ReactDOM.render(
       thumbOffsetTop={-1}
       thumbSize={10}
     />
-    <p>min: 4, max: 50, step: 1, icon (WIP)</p>
+    <p>min: 4, max: 50, step: 1, icon (WIP), custom thumb</p>
     <ReactSimpleRange
       min={4}
       max={50}
       step={1}
       onChange={logOnChange}
       icon={myIcon}
-    />
+    >
+      <div><b>@</b></div>
+    </ReactSimpleRange>
     <p>vertical: true, container div, icon (WIP)</p>
     <div style={widthAndAutoMargins}>
       <ReactSimpleRange

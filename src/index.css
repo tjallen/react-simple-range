@@ -12,9 +12,3 @@
 .eventwrapper:hover {
   cursor: pointer;
 }
-
-.thumb {
-  position: absolute;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 100%;
-}
