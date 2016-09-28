@@ -183,6 +183,7 @@ export default class Slider extends Component {
       overflow: 'visible',
     };
     if (vertical) {
+      eventWrapperStyle.width = `${sliderSize}px`;
       sliderStyle.height = '100%';
       sliderStyle.width = `${sliderSize}px`;
     }

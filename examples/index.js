@@ -17,12 +17,13 @@ const verticalSliderWrap = {
 };
 
 const myCustomThumbStyle = {
-  backgroundColor: 'yellow',
+  backgroundColor: '#fff',
   height: '14px',
   width: '14px',
-  border: '2px solid black',
-  marginTop: '-3px',
-  marginLeft: '-3px',
+  border: '1px solid rgba(0, 0, 0, 0.45)',
+  marginTop: '-2px',
+  marginLeft: '-2px',
+  transform: 'rotate(45deg)',
 };
 
 function logOnChange(state) {
@@ -32,7 +33,7 @@ function logOnChange(state) {
 ReactDOM.render(
   <div style={wrapper}>
     <h1><a href="https://github.com/tjallen/react-simple-range">react-simple-range</a> examples</h1>
-    <p>No props (= only defaultProps. All other sliders log their value to console)</p>
+    <p>No props (falls back to defaultProps. All other sliders log their value to console)</p>
     <ReactSimpleRange />
     <p>step: 10, defaultValue: 50</p>
     <ReactSimpleRange
@@ -44,13 +45,13 @@ ReactDOM.render(
     <ReactSimpleRange
       disableThumb
       step={1}
-      value={35}
+      value={50}
       onChange={logOnChange}
     />
     <p>custom slider and thumb size</p>
     <ReactSimpleRange
       step={1}
-      value={25}
+      value={50}
       onChange={logOnChange}
       sliderSize={12}
       thumbSize={18}
@@ -63,21 +64,19 @@ ReactDOM.render(
       defaultValue={50}
       onChange={logOnChange}
     />
-    <p>slider size > thumb size</p>
+    <p>slider size > thumb size, step 25</p>
     <ReactSimpleRange
       step={25}
-      value={25}
-      min={2}
-      max={99}
+      value={50}
       onChange={logOnChange}
       sliderSize={24}
       thumbSize={8}
     />
-    <p>min: 50, max: 75, custom thumb</p>
+    <p>min: 50, custom thumb</p>
     <ReactSimpleRange
       min={50}
-      max={75}
       onChange={logOnChange}
+      defaultValue={75}
     >
       <div style={myCustomThumbStyle}></div>
     </ReactSimpleRange>
@@ -85,7 +84,7 @@ ReactDOM.render(
       <p>vertical: true</p>
       <ReactSimpleRange
         onChange={logOnChange}
-        step={5}
+        defaultValue={25}
         vertical
       />
     </div>
@@ -93,7 +92,6 @@ ReactDOM.render(
       <p>slider > thumb size</p>
       <ReactSimpleRange
         onChange={logOnChange}
-        step={5}
         vertical
         sliderSize={34}
         thumbSize={12}
