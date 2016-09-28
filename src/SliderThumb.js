@@ -2,28 +2,34 @@ import React, { PropTypes } from 'react';
 
 const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vertical }) => {
   let defaultThumb;
-  let thumbWrapperStyles;
-  let thumbCentering;
-  if (!vertical) {
-    thumbCentering = (sliderSize - thumbSize) * 0.5;
-    thumbWrapperStyles = {
-      position: 'absolute',
-      left: `${position}%`,
-      top: '0px',
-      marginLeft: `-${thumbSize * 0.5}px`,
-      marginTop: `${thumbCentering}px`,
-      // opacity: '0.6',
-    };
-  } else {
-    thumbCentering = (sliderSize - thumbSize) * 0.5;
-    thumbWrapperStyles = {
-      position: 'absolute',
-      bottom: `${position}%`,
-      marginBottom: `-${thumbSize * 0.5}px`,
-      marginLeft: `${thumbCentering}px`,
-      // opacity: '0.6',
-    };
-  }
+  const thumbCentering = (sliderSize - thumbSize) * 0.5;
+  const thumbWrapperStyles = {
+    position: 'absolute',
+    get left() {
+      if (vertical) return undefined;
+      return `${position}%`;
+    },
+    get top() {
+      if (vertical) return undefined;
+      return '0px';
+    },
+    get bottom() {
+      if (vertical) return `${position}%`;
+      return undefined;
+    },
+    get marginLeft() {
+      if (vertical) return `${thumbCentering}px`;
+      return `-${thumbSize * 0.5}px`;
+    },
+    get marginTop() {
+      if (vertical) return undefined;
+      return `${thumbCentering}px`;
+    },
+    get marginBottom() {
+      if (vertical) return `-${thumbSize * 0.5}px`;
+      return undefined;
+    },
+  };
   if (!customThumb) {
     const defaultThumbStyles = {
       backgroundColor: `${color}`,
