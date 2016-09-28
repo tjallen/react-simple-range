@@ -3,21 +3,24 @@ import React, { PropTypes } from 'react';
 const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vertical }) => {
   let defaultThumb;
   let thumbWrapperStyles;
+  let thumbCentering;
   if (!vertical) {
+    thumbCentering = (sliderSize - thumbSize) * 0.5;
     thumbWrapperStyles = {
       position: 'absolute',
       left: `${position}%`,
       top: '0px',
       marginLeft: `-${thumbSize * 0.5}px`,
-      marginTop: `-${(thumbSize - sliderSize) * 0.5}px`,
+      marginTop: `${thumbCentering}px`,
       // opacity: '0.6',
     };
   } else {
+    thumbCentering = (sliderSize - thumbSize) * 0.5;
     thumbWrapperStyles = {
       position: 'absolute',
       bottom: `${position}%`,
       marginBottom: `-${thumbSize * 0.5}px`,
-      marginLeft: `-${(thumbSize - sliderSize) * 0.5}px`,
+      marginLeft: `${thumbCentering}px`,
       // opacity: '0.6',
     };
   }
@@ -42,7 +45,8 @@ SliderThumb.propTypes = {
   position: PropTypes.number,
   offsetTop: PropTypes.number,
   offsetLeft: PropTypes.number,
-  size: PropTypes.number,
+  sliderSize: PropTypes.number,
+  thumbSize: PropTypes.number,
   color: PropTypes.string,
   vertical: PropTypes.bool,
 };

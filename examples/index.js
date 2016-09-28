@@ -70,8 +70,8 @@ ReactDOM.render(
         step={5}
         vertical
         icon={hereIsMyIcon}
-        sliderSize={12}
-        thumbSize={16}
+        sliderSize={6}
+        thumbSize={22}
       />
     </div>
     <p>slider size larger than thumb size for debugging</p>
@@ -81,8 +81,8 @@ ReactDOM.render(
       min={2}
       max={99}
       onChange={logOnChange}
-      sliderSize={18}
-      thumbSize={12}
+      sliderSize={24}
+      thumbSize={8}
     />
     <p>vertical + slider size larger than thumb size for debugging</p>
     <div style={widthAndAutoMargins}>
@@ -90,8 +90,8 @@ ReactDOM.render(
         onChange={logOnChange}
         step={5}
         vertical
-        sliderSize={24}
-        thumbSize={16}
+        sliderSize={34}
+        thumbSize={12}
       />
     </div>
     <p>some horrible custom colors</p>

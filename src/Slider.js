@@ -39,7 +39,7 @@ export default class Slider extends Component {
     sliderColor: '#B9B9B9',
     trackColor: '#009688',
     thumbColor: '#009688',
-    thumbSize: 8,
+    thumbSize: 12,
   }
   constructor(props) {
     super(props);
