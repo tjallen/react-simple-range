@@ -174,6 +174,7 @@ export default class Slider extends Component {
       height: '100%',
       position: 'relative',
       cursor: 'pointer',
+      margin: '0 auto',
       get width() {
         return vertical ? `${sliderSize}px` : 'auto';
       },
