@@ -176,19 +176,24 @@ export default class Slider extends Component {
       height: '100%',
       position: 'relative',
       cursor: 'pointer',
+      get width() {
+        if (vertical) return `${sliderSize}px`;
+        return 'auto';
+      },
     };
     const sliderStyle = {
-      height: `${sliderSize}px`,
-      width: '100%',
       backgroundColor: this.props.sliderColor,
       position: 'relative',
       overflow: 'visible',
+      get height() {
+        if (vertical) return '100%';
+        return `${sliderSize}px`;
+      },
+      get width() {
+        if (vertical) return `${sliderSize}px`;
+        return '100%';
+      },
     };
-    if (vertical) {
-      eventWrapperStyle.width = `${sliderSize}px`;
-      sliderStyle.height = '100%';
-      sliderStyle.width = `${sliderSize}px`;
-    }
     return (
       <div
         style={eventWrapperStyle}
