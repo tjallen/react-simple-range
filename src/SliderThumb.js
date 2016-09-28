@@ -27,7 +27,6 @@ const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vert
   if (!customThumb) {
     const defaultThumbStyles = {
       backgroundColor: `${color}`,
-      // backgroundColor: 'red',
       borderRadius: '100%',
       height: `${thumbSize}px`,
       width: `${thumbSize}px`,

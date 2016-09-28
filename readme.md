@@ -33,15 +33,15 @@ step | number | `1`  | Number inc/decremented when slider value is changed. The 
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
-vertical | boolean | false | Set slider to vertical if true, horizontal if false. NB vertical sliders require a wrapper with a set height to not collapse
+vertical | boolean | false | Set slider to vertical when true. NB vertical sliders currently require a wrapper with a set height to not collapse
+disableThumb | boolean | false | Disables the thumb when true
+disableTrack | boolean | false | Disables the track when true
 sliderSize | number | `6` | Px height of slider if horizontal, width if vertical (the other dimension is always 100%)
-thumbSize | number | `8` | Px height+width of thumb (aka slider handle / knob)
+thumbSize | number | `sliderSize * 2` | Px height+width of thumb (aka slider handle / knob)
 sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
 thumbColor | string | `'#fff'` | Color of thumb
-disableThumb | | |
-customThumb | | |
-icon | | |
+customThumb | element | undefined | Pass in a single React element to use as your thumb, replacing the default
 
 ## Development
 

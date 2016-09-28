@@ -8,7 +8,7 @@ function noOp() {}
 
 export default class Slider extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.element,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -36,7 +36,6 @@ export default class Slider extends Component {
     trackColor: '#009688',
     thumbColor: '#009688',
     sliderSize: 6,
-    thumbSize: 12,
   }
   constructor(props) {
     super(props);
@@ -152,9 +151,12 @@ export default class Slider extends Component {
     evt.stopPropagation();
   }
   updateStateFromProps(props) {
-    let value = props.value;
+    let { value, thumbSize } = this.props;
     if (value === undefined) {
       value = (props.defaultValue !== undefined ? props.defaultValue : 0);
+    }
+    if (props.thumbSize === undefined) {
+      thumbSize = props.sliderSize * 2;
     }
     const { min, max, step } = props;
     const range = max - min;
@@ -166,10 +168,11 @@ export default class Slider extends Component {
       range,
       step,
       ratio,
+      thumbSize,
     });
   }
   render() {
-    const { vertical, sliderSize, disableThumb, disableTrack } = this.props;
+    const { vertical, sliderSize, disableThumb, disableTrack, children } = this.props;
     const eventWrapperStyle = {
       height: '100%',
       position: 'relative',
@@ -211,8 +214,8 @@ export default class Slider extends Component {
             ? <SliderThumb
               position={this.state.ratio}
               vertical={vertical}
-              customThumb={this.props.children}
-              thumbSize={this.props.thumbSize}
+              customThumb={children}
+              thumbSize={this.state.thumbSize}
               sliderSize={this.props.sliderSize}
               color={this.props.thumbColor}
             />
