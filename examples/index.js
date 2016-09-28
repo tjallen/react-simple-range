@@ -43,6 +43,13 @@ ReactDOM.render(
       defaultValue={50}
       onChange={logOnChange}
     />
+    <p>disableThumb</p>
+    <ReactSimpleRange
+      disableThumb
+      step={1}
+      value={35}
+      onChange={logOnChange}
+    />
     <p>step: 25, value: 25, icon (WIP)</p>
     <ReactSimpleRange
       step={25}

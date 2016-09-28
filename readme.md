@@ -39,6 +39,7 @@ thumbSize | number | `8` | Px height+width of thumb (aka slider handle / knob)
 sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
 thumbColor | string | `'#fff'` | Color of thumb
+disableThumb | | |
 customThumb | | |
 icon | | |
 
