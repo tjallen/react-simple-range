@@ -6,28 +6,22 @@ const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vert
   const thumbWrapperStyles = {
     position: 'absolute',
     get left() {
-      if (vertical) return undefined;
-      return `${position}%`;
+      return vertical ? undefined : `${position}%`;
     },
     get top() {
-      if (vertical) return undefined;
-      return '0px';
+      return vertical ? undefined : '0px';
     },
     get bottom() {
-      if (vertical) return `${position}%`;
-      return undefined;
+      return vertical ? `${position}%` : undefined;
     },
     get marginLeft() {
-      if (vertical) return `${thumbCentering}px`;
-      return `-${thumbSize * 0.5}px`;
+      return vertical ? `${thumbCentering}px` : `-${thumbSize * 0.5}px`;
     },
     get marginTop() {
-      if (vertical) return undefined;
-      return `${thumbCentering}px`;
+      return vertical ? undefined : `${thumbCentering}px`;
     },
     get marginBottom() {
-      if (vertical) return `-${thumbSize * 0.5}px`;
-      return undefined;
+      return vertical ? `-${thumbSize * 0.5}px` : undefined;
     },
   };
   if (!customThumb) {

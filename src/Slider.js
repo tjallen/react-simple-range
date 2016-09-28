@@ -177,8 +177,7 @@ export default class Slider extends Component {
       position: 'relative',
       cursor: 'pointer',
       get width() {
-        if (vertical) return `${sliderSize}px`;
-        return 'auto';
+        return vertical ? `${sliderSize}px` : 'auto';
       },
     };
     const sliderStyle = {
@@ -186,12 +185,10 @@ export default class Slider extends Component {
       position: 'relative',
       overflow: 'visible',
       get height() {
-        if (vertical) return '100%';
-        return `${sliderSize}px`;
+        return vertical ? '100%' : `${sliderSize}px`;
       },
       get width() {
-        if (vertical) return `${sliderSize}px`;
-        return '100%';
+        return vertical ? `${sliderSize}px` : '100%';
       },
     };
     return (
