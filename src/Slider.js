@@ -18,6 +18,7 @@ export default class Slider extends Component {
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
     disableThumb: PropTypes.bool,
+    disableTrack: PropTypes.bool,
     sliderSize: PropTypes.number,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
@@ -32,6 +33,7 @@ export default class Slider extends Component {
     vertical: false,
     // styles
     disableThumb: false,
+    disableTrack: false,
     sliderSize: 6,
     sliderColor: '#B9B9B9',
     trackColor: '#009688',
@@ -169,7 +171,7 @@ export default class Slider extends Component {
     });
   }
   render() {
-    const { vertical, sliderSize, disableThumb } = this.props;
+    const { vertical, sliderSize, disableThumb, disableTrack } = this.props;
     const eventWrapperStyle = {
       height: '100%',
       position: 'relative',
@@ -196,20 +198,25 @@ export default class Slider extends Component {
           ref="slider"
           style={sliderStyle}
         >
-          <SliderTrack
-            trackLength={this.state.ratio}
-            color={this.props.trackColor}
-            vertical={vertical}
-          />
-          {!disableThumb ?
-            <SliderThumb
+          {!disableTrack
+            ? <SliderTrack
+              trackLength={this.state.ratio}
+              color={this.props.trackColor}
+              vertical={vertical}
+            />
+            : null
+          }
+          {!disableThumb
+            ? <SliderThumb
               position={this.state.ratio}
               vertical={vertical}
               customThumb={this.props.children}
               thumbSize={this.props.thumbSize}
               sliderSize={this.props.sliderSize}
               color={this.props.thumbColor}
-            /> : null}
+            />
+            : null
+          }
 
         </div>
       </div>

@@ -48,6 +48,13 @@ ReactDOM.render(
       value={50}
       onChange={logOnChange}
     />
+    <p>disableTrack</p>
+    <ReactSimpleRange
+      disableTrack
+      step={1}
+      value={50}
+      onChange={logOnChange}
+    />
     <p>custom slider and thumb size</p>
     <ReactSimpleRange
       step={1}
