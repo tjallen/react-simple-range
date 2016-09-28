@@ -42,9 +42,9 @@ export default class Slider extends Component {
     this.state = {
       drag: false,
     };
-    this.onMouseDown = this.onMouseDown.bind(this);
-    this.mouseUp = this.mouseUp.bind(this);
-    this.mouseMove = this.mouseMove.bind(this);
+    this.onInteractionStart = this.onInteractionStart.bind(this);
+    this.onMouseOrTouchMove = this.onMouseOrTouchMove.bind(this);
+    this.onInteractionEnd = this.onInteractionEnd.bind(this);
   }
   componentWillMount() {
     this.updateStateFromProps(this.props);
@@ -59,14 +59,47 @@ export default class Slider extends Component {
   componentWillReceiveProps(nextProps) {
     this.updateStateFromProps(nextProps);
   }
-  onMouseDown(evt) {
+  onInteractionStart(e) {
+    const eventType = (e.touches !== undefined ? 'touch' : 'mouse');
     const leftMouseButton = 0;
-    if (evt.button !== leftMouseButton) return;
-    this.updateSliderValue(evt);
+    if ((eventType === 'mouse') && (e.button !== leftMouseButton)) return;
+    this.updateSliderValue(e, eventType);
     this.setState({ drag: true });
-    document.addEventListener('mousemove', this.mouseMove);
-    document.addEventListener('mouseup', this.mouseUp);
-    evt.preventDefault();
+    this.addEvents(eventType);
+    e.preventDefault();
+  }
+  onInteractionEnd() {
+    this.setState({
+      drag: false,
+    });
+    this.removeEvents();
+  }
+  onMouseOrTouchMove(e) {
+    const eventType = (e.touches !== undefined ? 'touch' : 'mouse');
+    if (!this.state.drag) return;
+    this.updateSliderValue(e, eventType);
+    e.stopPropagation();
+  }
+  addEvents(type) {
+    switch (type) {
+      case 'mouse': {
+        document.addEventListener('mousemove', this.onMouseOrTouchMove);
+        document.addEventListener('mouseup', this.onInteractionEnd);
+        break;
+      }
+      case 'touch': {
+        document.addEventListener('touchmove', this.onMouseOrTouchMove);
+        document.addEventListener('touchend', this.onInteractionEnd);
+        break;
+      }
+      default: // nothing
+    }
+  }
+  removeEvents() {
+    document.removeEventListener('mousemove', this.onMouseOrTouchMove);
+    document.removeEventListener('mouseup', this.onInteractionEnd);
+    document.removeEventListener('touchmove', this.onMouseOrTouchMove);
+    document.removeEventListener('touchend', this.onInteractionEnd);
   }
   getSliderInfo() {
     const sl = this.refs.slider;
@@ -77,19 +110,21 @@ export default class Slider extends Component {
     };
     return sliderInfo;
   }
-  updateSliderValue(evt) {
+  updateSliderValue(e, eventType) {
     const { max, min } = this.state;
-    let { value } = this.state;
     const { vertical } = this.props;
+    let { value } = this.state;
+    const xCoords = (eventType !== 'touch' ? e.pageX : e.touches[0].pageX) - window.pageXOffset;
+    const yCoords = (eventType !== 'touch' ? e.pageY : e.touches[0].pageY) - window.pageYOffset;
     // compare position to slider length to get percentage
     let position;
     let lengthOrHeight;
     if (!vertical) {
-      position = evt.pageX - this.getSliderInfo().bounds.left;
+      position = xCoords - this.getSliderInfo().bounds.left;
       lengthOrHeight = this.getSliderInfo().length;
     } else {
       lengthOrHeight = this.getSliderInfo().height;
-      position = lengthOrHeight - (evt.pageY - this.getSliderInfo().bounds.top);
+      position = lengthOrHeight - (yCoords - this.getSliderInfo().bounds.top);
     }
     const percent = this.clampValue(+(position / lengthOrHeight).toFixed(2), 0, 1);
     // convert perc -> value then match value to notch as per props/state.step
@@ -138,18 +173,6 @@ export default class Slider extends Component {
   clampValue(val, min, max) {
     return Math.max(min, Math.min(val, max));
   }
-  mouseUp() {
-    this.setState({
-      drag: false,
-    });
-    document.removeEventListener('mouseup', this.mouseUp);
-    document.removeEventListener('mousemove', this.mouseMove);
-  }
-  mouseMove(evt) {
-    if (!this.state.drag) return;
-    this.updateSliderValue(evt);
-    evt.stopPropagation();
-  }
   updateStateFromProps(props) {
     let { value, thumbSize } = this.props;
     if (value === undefined) {
@@ -196,7 +219,8 @@ export default class Slider extends Component {
     return (
       <div
         style={eventWrapperStyle}
-        onMouseDown={this.onMouseDown}
+        onMouseDown={this.onInteractionStart}
+        onTouchStart={this.onInteractionStart}
       >
         <div
           ref="slider"

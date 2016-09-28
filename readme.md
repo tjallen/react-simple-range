@@ -54,9 +54,3 @@ Name | Effect
 `npm start` | Starts a webpack-dev-server, currently serves the `examples/` directory to `http://localhost:8080/`
 `npm run test` | Runs tests with `mocha`
 `npm run test:watch` | Runs tests in watch mode with `mocha --watch`
-
-## Future additions
-
-- Touch events
-- Better perf
-- Other stuff
