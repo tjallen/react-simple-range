@@ -4,8 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import SliderThumb from './SliderThumb';
 import SliderTrack from './SliderTrack';
 
-function noOp() {
-}
+function noOp() {}
 
 export default class Slider extends Component {
   static propTypes = {
@@ -17,12 +16,12 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
-    disableThumb: PropTypes.bool,
     disableTrack: PropTypes.bool,
-    sliderSize: PropTypes.number,
+    disableThumb: PropTypes.bool,
     sliderColor: PropTypes.string,
     trackColor: PropTypes.string,
     thumbColor: PropTypes.string,
+    sliderSize: PropTypes.number,
     thumbSize: PropTypes.number,
   }
   static defaultProps = {
@@ -31,13 +30,12 @@ export default class Slider extends Component {
     step: 1,
     onChange: noOp,
     vertical: false,
-    // styles
-    disableThumb: false,
     disableTrack: false,
-    sliderSize: 6,
+    disableThumb: false,
     sliderColor: '#B9B9B9',
     trackColor: '#009688',
     thumbColor: '#009688',
+    sliderSize: 6,
     thumbSize: 12,
   }
   constructor(props) {
@@ -55,7 +53,7 @@ export default class Slider extends Component {
   componentDidMount() {
     if (this.props.onChange.name === 'noOp') {
       console.warn(
-        `ReactSimpleRange component was not provided an onChange prop.
+        `A react-simple-range component was not provided an onChange prop.
         \nRecommend passing down a function as onChange else this component is purely cosmetic`);
     }
   }
