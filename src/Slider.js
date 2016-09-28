@@ -13,6 +13,8 @@ function noOp() {
 
 export default class Slider extends Component {
   static propTypes = {
+    children: PropTypes.node,
+    icon: PropTypes.node,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -20,7 +22,6 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
-    icon: PropTypes.node,
     disableThumb: PropTypes.bool,
     sliderSize: PropTypes.number,
     sliderColor: PropTypes.string,

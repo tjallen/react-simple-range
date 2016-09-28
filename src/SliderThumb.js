@@ -49,5 +49,6 @@ SliderThumb.propTypes = {
   thumbSize: PropTypes.number,
   color: PropTypes.string,
   vertical: PropTypes.bool,
+  customThumb: PropTypes.node,
 };
 export default SliderThumb;
