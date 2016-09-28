@@ -3,17 +3,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSimpleRange from '../src/';
-import myIcon from './icons/ic_volume_up_24px.svg';
 const rootElement = document.getElementById('app');
 
 const wrapper = {
   margin: '20px',
 };
 
-const widthAndAutoMargins = {
-  width: '10px',
+const verticalSliderWrap = {
+  width: '120px',
   margin: '20px auto',
   height: '140px',
+  display: 'inline-block',
 };
 
 const myCustomThumbStyle = {
@@ -21,21 +21,18 @@ const myCustomThumbStyle = {
   height: '14px',
   width: '14px',
   border: '2px solid black',
-  marginTop: '-5px',
-  marginLeft: '-4px',
+  marginTop: '-3px',
+  marginLeft: '-3px',
 };
 
 function logOnChange(state) {
   console.log(state.value);
 }
 
-const hereIsMyIcon = <img src={myIcon} alt="myIcon" />;
-const anotherIcon = <div>Icon</div>
-
 ReactDOM.render(
   <div style={wrapper}>
-    <h1>react-simple-range examples</h1>
-    <p>No props (all other sliders log their value to console)</p>
+    <h1><a href="https://github.com/tjallen/react-simple-range">react-simple-range</a> examples</h1>
+    <p>No props (= only defaultProps. All other sliders log their value to console)</p>
     <ReactSimpleRange />
     <p>step: 10, defaultValue: 50</p>
     <ReactSimpleRange
@@ -50,38 +47,23 @@ ReactDOM.render(
       value={35}
       onChange={logOnChange}
     />
-    <p>step: 25, value: 25, icon (WIP)</p>
+    <p>custom slider and thumb size</p>
     <ReactSimpleRange
-      step={25}
+      step={1}
       value={25}
-      min={2}
-      max={99}
       onChange={logOnChange}
       sliderSize={12}
       thumbSize={18}
-      icon={myIcon}
     />
-    <p>min: 4, max: 50, step: 1, custom thumb</p>
+    <p>custom colors</p>
     <ReactSimpleRange
-      min={4}
-      max={50}
-      step={1}
+      sliderColor="#FFCDD2"
+      trackColor="#E57373"
+      thumbColor="#B71C1C"
+      defaultValue={50}
       onChange={logOnChange}
-    >
-      <div style={myCustomThumbStyle}></div>
-    </ReactSimpleRange>
-    <p>vertical: true, container div, icon (WIP)</p>
-    <div style={widthAndAutoMargins}>
-      <ReactSimpleRange
-        onChange={logOnChange}
-        step={5}
-        vertical
-        icon={hereIsMyIcon}
-        sliderSize={6}
-        thumbSize={22}
-      />
-    </div>
-    <p>slider size larger than thumb size for debugging</p>
+    />
+    <p>slider size > thumb size</p>
     <ReactSimpleRange
       step={25}
       value={25}
@@ -91,8 +73,24 @@ ReactDOM.render(
       sliderSize={24}
       thumbSize={8}
     />
-    <p>vertical + slider size larger than thumb size for debugging</p>
-    <div style={widthAndAutoMargins}>
+    <p>min: 50, max: 75, custom thumb</p>
+    <ReactSimpleRange
+      min={50}
+      max={75}
+      onChange={logOnChange}
+    >
+      <div style={myCustomThumbStyle}></div>
+    </ReactSimpleRange>
+    <div style={verticalSliderWrap}>
+      <p>vertical: true</p>
+      <ReactSimpleRange
+        onChange={logOnChange}
+        step={5}
+        vertical
+      />
+    </div>
+    <div style={verticalSliderWrap}>
+      <p>slider > thumb size</p>
       <ReactSimpleRange
         onChange={logOnChange}
         step={5}
@@ -101,13 +99,6 @@ ReactDOM.render(
         thumbSize={12}
       />
     </div>
-    <p>some horrible custom colors</p>
-    <ReactSimpleRange
-      sliderColor="black"
-      trackColor="brown"
-      thumbColor="red"
-      onChange={logOnChange}
-    />
   </div>,
   rootElement
 );

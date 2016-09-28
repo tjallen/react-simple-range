@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
-
 import React, { Component, PropTypes } from 'react';
 
-import SliderIcon from './SliderIcon';
 import SliderThumb from './SliderThumb';
 import SliderTrack from './SliderTrack';
 
@@ -14,7 +12,6 @@ function noOp() {
 export default class Slider extends Component {
   static propTypes = {
     children: PropTypes.node,
-    icon: PropTypes.node,
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -35,7 +32,6 @@ export default class Slider extends Component {
     step: 1,
     onChange: noOp,
     vertical: false,
-    icon: false,
     // styles
     disableThumb: false,
     sliderSize: 6,
@@ -175,7 +171,7 @@ export default class Slider extends Component {
     });
   }
   render() {
-    const { vertical, sliderSize, icon, disableThumb } = this.props;
+    const { vertical, sliderSize, disableThumb } = this.props;
     const sliderStyle = {
       height: `${sliderSize}px`,
       width: '100%',
@@ -191,7 +187,6 @@ export default class Slider extends Component {
         className={styles.eventwrapper}
         onMouseDown={this.onMouseDown}
       >
-      {icon ? <SliderIcon /> : null}
         <div
           ref="slider"
           className={styles.slider}
