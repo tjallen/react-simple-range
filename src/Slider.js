@@ -4,8 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import SliderThumb from './SliderThumb';
 import SliderTrack from './SliderTrack';
 
-import styles from './index.css';
-
 function noOp() {
 }
 
@@ -172,11 +170,17 @@ export default class Slider extends Component {
   }
   render() {
     const { vertical, sliderSize, disableThumb } = this.props;
+    const eventWrapperStyle = {
+      height: '100%',
+      position: 'relative',
+      cursor: 'pointer',
+    };
     const sliderStyle = {
       height: `${sliderSize}px`,
       width: '100%',
       backgroundColor: this.props.sliderColor,
       position: 'relative',
+      overflow: 'visible',
     };
     if (vertical) {
       sliderStyle.height = '100%';
@@ -184,16 +188,14 @@ export default class Slider extends Component {
     }
     return (
       <div
-        className={styles.eventwrapper}
+        style={eventWrapperStyle}
         onMouseDown={this.onMouseDown}
       >
         <div
           ref="slider"
-          className={styles.slider}
           style={sliderStyle}
         >
           <SliderTrack
-            className={styles.track}
             trackLength={this.state.ratio}
             color={this.props.trackColor}
             vertical={vertical}
