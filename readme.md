@@ -5,7 +5,7 @@
 
 A simple React component for inputting a number between a min and a max value using a slider.
 
-_nb: in development and getting regular updates - but early in life / not fully tested - production use not recommended yet_
+_nb: v1.2.1 onwards should be fairly stable, but releases are being left marked as pre-release until test coverage is improved_
 
 ## Install
 
@@ -55,3 +55,9 @@ Name | Effect
 `npm start` | Starts a webpack-dev-server, currently serves the `examples/` directory to `http://localhost:8080/`
 `npm run test` | Runs tests with `mocha`
 `npm run test:watch` | Runs tests in watch mode with `mocha --watch`
+
+## Future
+
+- Better test coverage
+- Improved examples
+- Submit an issue to add to this list
