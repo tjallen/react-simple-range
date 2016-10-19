@@ -50,6 +50,8 @@ customThumb | element | undefined | Pass in a single React element to use as you
 
 Clone the repo then run ```npm start``` in the cloned directory to start webpack-dev-server and serve the examples.
 
+Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't
+
 ## Commands
 
 Name | Effect

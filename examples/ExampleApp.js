@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import 'babel-polyfill';
 
 import React from 'react';
 import ExampleRSR from './ExampleRSR';
@@ -10,19 +11,12 @@ const ExampleApp = () => {
     maxWidth: '480px',
   };
 
-  const verticalSliderWrap = {
-    // width: '60px',
-    // margin: '20px auto',
-    // height: '160px',
-    // display: 'inline-block',
-  };
-
   const myCustomThumbStyle = {
     backgroundColor: '#fff',
     height: '14px',
     width: '14px',
     border: '1px solid rgba(0, 0, 0, 0.45)',
-    marginTop: '-2px',
+    marginTop: '-3px',
     marginLeft: '-2px',
     transform: 'rotate(45deg)',
   };
@@ -33,8 +27,8 @@ const ExampleApp = () => {
   return (
     <div style={wrapper}>
       <h1><a href="https://github.com/tjallen/react-simple-range">react-simple-range</a> examples</h1>
+      <p>Note: All component instances barring the first are provided with the "label" prop to display their value for the purpose of these examples.</p>
       <ExampleRSR title="No props" />
-      <p>All subsequent component instances are provided with the "label" prop for the purpose of these examples.</p>
       <ExampleRSR
         title="Set defaultValue, step in 10s, onChange callback provided (logs to console)"
         label
@@ -45,6 +39,7 @@ const ExampleApp = () => {
       <ExampleRSR
         title="1 - 10 slider"
         label
+        min={1}
         max={10}
       />
       <ExampleRSR
@@ -106,9 +101,10 @@ const ExampleApp = () => {
         step={25}
       />
       <ExampleRSR
-        title="Vertical slider with custom min, max, size, disabled thumb"
+        title="Taller vertical slider with custom min, max, size, disabled thumb"
         label
         vertical
+        verticalSliderHeight="150px"
         min={1}
         max={99}
         sliderSize={14}
