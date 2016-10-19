@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
 
 const SliderLabel = ({ position, color, vertical, value, thumbSize, sliderSize }) => {
-  const thumbCentering = (sliderSize - thumbSize) * 0.5;
   const labelCentering = -10 + (sliderSize * 0.5);
-  const labelTopOffset = 25 + (sliderSize * 0.5);
+  const labelVerticalOffset = 6 + (thumbSize * 0.6);
   const labelWrapperStyles = {
     position: 'absolute',
     backgroundColor: color,
@@ -28,7 +27,7 @@ const SliderLabel = ({ position, color, vertical, value, thumbSize, sliderSize }
       return vertical ? `${position}%` : undefined;
     },
     get marginBottom() {
-      return vertical ? `${thumbSize * 1.5}px` : undefined;
+      return vertical ? `${labelVerticalOffset}px` : undefined;
     },
   };
   const pointerStyles = {
@@ -56,5 +55,7 @@ SliderLabel.propTypes = {
   color: PropTypes.string,
   vertical: PropTypes.bool,
   value: PropTypes.number,
+  thumbSize: PropTypes.number,
+  sliderSize: PropTypes.number,
 };
 export default SliderLabel;

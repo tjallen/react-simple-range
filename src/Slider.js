@@ -185,7 +185,7 @@ export default class Slider extends Component {
       value = (props.defaultValue !== undefined ? props.defaultValue : 0);
     }
     if (props.thumbSize === undefined) {
-      thumbSize = props.sliderSize * 2;
+      thumbSize = (this.props.disableThumb ? 0 : props.sliderSize * 2);
     }
     const { min, max, step } = props;
     const range = max - min;
