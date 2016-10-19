@@ -1,11 +1,11 @@
 # react-simple-range
 
 [![npm version](https://img.shields.io/npm/v/react-simple-range.svg?style=flat)](https://www.npmjs.com/package/react-simple-range)
-[![npm version](https://img.shields.io/travis/tjallen/react-simple-range.svg?style=flat)](https://travis-ci.org/tjallen/react-simple-range)
+[![travis build](https://img.shields.io/travis/tjallen/react-simple-range.svg?style=flat)](https://travis-ci.org/tjallen/react-simple-range)
 
-A simple React component for inputting a number between a min and a max value using a slider.
+A simple React slider component for inputting a number value within a range.
 
-_nb: v1.2.1 onwards should be fairly stable, but releases are being left marked as pre-release until test coverage is improved_
+_nb: builds post v1.2.1 should be fairly stable, but releases are being left marked as pre-release until test coverage is improved_
 
 ## Install
 
@@ -31,16 +31,18 @@ Name | Type | Default | Description
 min | number | `0` | Minimum slider value
 max | number | `100` | Maximum slider value
 step | number | `1`  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
-onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes
+onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this!
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
-vertical | boolean | false | Set slider to vertical when true. NB vertical sliders currently require a wrapper with a set height to not collapse
+vertical | boolean | false | Set slider to vertical when true
+verticalSliderHeight | string | `'100px'` | Default height for slider if vertical is true. If your slider has a set height wrapper you can set this to 100% instead
+label | boolean | false | If true, adds a label displaying the slider's value when interacted with
 disableThumb | boolean | false | Disables the thumb when true
 disableTrack | boolean | false | Disables the track when true
-sliderSize | number | `6` | Px height of slider if horizontal, width if vertical (the other dimension is always 100%)
-thumbSize | number | `sliderSize * 2` | Px height+width of thumb (aka slider handle / knob)
+sliderSize | number | `4` | Px height of slider if horizontal, width if vertical
+thumbSize | number | `sliderSize * 2` | Height and width of thumb in px
 sliderColor | string | `'#9E9E9E'` | Color of slider
-trackColor | string | `'#03A9F4'` | Color of track (aka progress indicator on slider)
+trackColor | string | `'#03A9F4'` | Color of track and label
 thumbColor | string | `'#fff'` | Color of thumb
 customThumb | element | undefined | Pass in a single React element to use as your thumb, replacing the default
 
@@ -59,5 +61,4 @@ Name | Effect
 ## Future
 
 - Better test coverage
-- Improved examples
 - Submit an issue to add to this list
