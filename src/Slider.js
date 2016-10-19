@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import SliderThumb from './SliderThumb';
+import SliderLabel from './SliderLabel';
 import SliderTrack from './SliderTrack';
 
 function noOp() {}
@@ -16,6 +17,7 @@ export default class Slider extends Component {
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
+    label: PropTypes.bool,
     disableTrack: PropTypes.bool,
     disableThumb: PropTypes.bool,
     sliderColor: PropTypes.string,
@@ -30,6 +32,7 @@ export default class Slider extends Component {
     step: 1,
     onChange: noOp,
     vertical: false,
+    label: false,
     disableTrack: false,
     disableThumb: false,
     sliderColor: '#B9B9B9',
@@ -64,13 +67,14 @@ export default class Slider extends Component {
     const leftMouseButton = 0;
     if ((eventType === 'mouse') && (e.button !== leftMouseButton)) return;
     this.updateSliderValue(e, eventType);
-    this.setState({ drag: true });
+    this.setState({ drag: true, displayLabel: true });
     this.addEvents(eventType);
     e.preventDefault();
   }
   onInteractionEnd() {
     this.setState({
       drag: false,
+      displayLabel: false,
     });
     this.removeEvents();
   }
@@ -79,6 +83,15 @@ export default class Slider extends Component {
     if (!this.state.drag) return;
     this.updateSliderValue(e, eventType);
     e.stopPropagation();
+  }
+  getSliderInfo() {
+    const sl = this.refs.slider;
+    const sliderInfo = {
+      bounds: sl.getBoundingClientRect(),
+      length: sl.clientWidth,
+      height: sl.clientHeight,
+    };
+    return sliderInfo;
   }
   addEvents(type) {
     switch (type) {
@@ -100,15 +113,6 @@ export default class Slider extends Component {
     document.removeEventListener('mouseup', this.onInteractionEnd);
     document.removeEventListener('touchmove', this.onMouseOrTouchMove);
     document.removeEventListener('touchend', this.onInteractionEnd);
-  }
-  getSliderInfo() {
-    const sl = this.refs.slider;
-    const sliderInfo = {
-      bounds: sl.getBoundingClientRect(),
-      length: sl.clientWidth,
-      height: sl.clientHeight,
-    };
-    return sliderInfo;
   }
   updateSliderValue(e, eventType) {
     const { max, min } = this.state;
@@ -195,7 +199,16 @@ export default class Slider extends Component {
     });
   }
   render() {
-    const { vertical, sliderSize, disableThumb, disableTrack, children } = this.props;
+    const {
+      vertical,
+      sliderSize,
+      disableThumb,
+      disableTrack,
+      children,
+      label,
+      trackColor,
+      thumbColor,
+    } = this.props;
     const eventWrapperStyle = {
       height: '100%',
       position: 'relative',
@@ -229,22 +242,32 @@ export default class Slider extends Component {
           {!disableTrack
             ? <SliderTrack
               trackLength={this.state.ratio}
-              color={this.props.trackColor}
+              color={trackColor}
               vertical={vertical}
             />
             : null
           }
-          {!disableThumb
-            ? <SliderThumb
+          {label && this.state.displayLabel
+            ? <SliderLabel
               position={this.state.ratio}
               vertical={vertical}
-              customThumb={children}
+              color={trackColor}
+              value={this.state.value}
+              sliderSize={sliderSize}
               thumbSize={this.state.thumbSize}
-              sliderSize={this.props.sliderSize}
-              color={this.props.thumbColor}
             />
             : null
           }
+          <SliderThumb
+            position={this.state.ratio}
+            vertical={vertical}
+            customThumb={children}
+            thumbSize={this.state.thumbSize}
+            sliderSize={sliderSize}
+            color={thumbColor}
+            disableThumb={disableThumb}
+            value={this.state.value}
+          />
 
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vertical }) => {
+const SliderThumb = ({ customThumb, disableThumb, position, thumbSize, sliderSize, color, vertical, value }) => {
   let defaultThumb;
   const thumbCentering = (sliderSize - thumbSize) * 0.5;
   const thumbWrapperStyles = {
@@ -27,6 +27,8 @@ const SliderThumb = ({ customThumb, position, thumbSize, sliderSize, color, vert
   if (!customThumb) {
     const defaultThumbStyles = {
       backgroundColor: `${color}`,
+      opacity: (disableThumb ? '0' : '1'),
+      // opacity: '0.5',
       borderRadius: '100%',
       height: `${thumbSize}px`,
       width: `${thumbSize}px`,
