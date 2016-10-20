@@ -7,6 +7,11 @@ A simple React slider component for inputting a number value within a range.
 
 _nb: builds post v1.2.1 should be fairly stable, but releases are being left marked as pre-release until test coverage is improved_
 
+## Examples
+
+- For local examples check out the [Development](#Development) section below
+- [Or view examples online here](http://thomjamesallen.com/projects/react-simple-range-examples/)
+
 ## Install
 
 ```npm install react-simple-range --save```
@@ -23,6 +28,12 @@ const rootElement = document.getElementById('app');
 
 ReactDOM.render(<ReactSimpleRange />, rootElement);
 ```
+
+## Development
+
+Clone the repo then run ```npm start``` in the cloned directory to start webpack-dev-server and serve the examples.
+
+Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't
 
 ## Props
 
@@ -45,12 +56,6 @@ sliderColor | string | `'#9E9E9E'` | Color of slider
 trackColor | string | `'#03A9F4'` | Color of track and label
 thumbColor | string | `'#fff'` | Color of thumb
 customThumb | element | undefined | Pass in a single React element to use as your thumb, replacing the default
-
-## Development
-
-Clone the repo then run ```npm start``` in the cloned directory to start webpack-dev-server and serve the examples.
-
-Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't
 
 ## Commands
 
