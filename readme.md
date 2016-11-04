@@ -47,6 +47,7 @@ value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | `0` | Set initial value of slider
 vertical | boolean | false | Set slider to vertical when true
 verticalSliderHeight | string | `'100px'` | Default height for slider if vertical is true. If your slider has a set height wrapper you can set this to 100% instead
+eventWrapperPadding | number | 8 | Px value to add padding to the wrapper to make small sliders easier to interact with
 label | boolean | false | If true, adds a label displaying the slider's value when interacted with
 disableThumb | boolean | false | Disables the thumb when true
 disableTrack | boolean | false | Disables the track when true

@@ -63,6 +63,14 @@ const ExampleApp = () => {
         thumbSize={18}
       />
       <ExampleRSR
+        title="Extra small slider, custom large event wrapper to compensate"
+        sliderSize={1}
+        eventWrapperPadding={14}
+        label
+        disableThumb
+        value={50}
+      />
+      <ExampleRSR
         title="Custom colors"
         label
         sliderColor="#FFCDD2"

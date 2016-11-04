@@ -18,6 +18,7 @@ export default class Slider extends Component {
     onChange: PropTypes.func,
     vertical: PropTypes.bool,
     verticalSliderHeight: PropTypes.string,
+    eventWrapperPadding: PropTypes.number,
     label: PropTypes.bool,
     disableTrack: PropTypes.bool,
     disableThumb: PropTypes.bool,
@@ -34,6 +35,7 @@ export default class Slider extends Component {
     onChange: noOp,
     vertical: false,
     verticalSliderHeight: '100px',
+    eventWrapperPadding: 8,
     label: false,
     disableTrack: false,
     disableThumb: false,
@@ -211,12 +213,16 @@ export default class Slider extends Component {
       trackColor,
       thumbColor,
       verticalSliderHeight,
+      eventWrapperPadding,
     } = this.props;
     const eventWrapperStyle = {
       height: '100%',
       position: 'relative',
       cursor: 'pointer',
       margin: '0 auto',
+      get padding() {
+        return vertical ? `0 ${eventWrapperPadding}px` : `${eventWrapperPadding}px 0`;
+      },
       get width() {
         return vertical ? `${sliderSize}px` : 'auto';
       },
