@@ -45,18 +45,18 @@ step | number | 1  | Number inc/decremented when slider value is changed. The ra
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this!
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | 0 | Set initial value of slider
-vertical | boolean | false | Set slider to vertical when true
+vertical | boolean | `false` | Set slider to vertical when true
 verticalSliderHeight | string | `100px` | Default slider height if vertical. If your slider already has a fixed height wrapper, just set this to `100%` and the slider will fill the space
 eventWrapperPadding | number | 8 | Px value to add padding to the wrapper to make small sliders easier to interact with
-label | boolean | false | If true, adds a label displaying the slider's value when interacted with
-disableThumb | boolean | false | Disables the thumb when true
-disableTrack | boolean | false | Disables the track when true
+label | boolean | `false` | If true, adds a label displaying the slider's value when interacted with
+disableThumb | boolean | `false` | Disables the thumb when true
+disableTrack | boolean | `false` | Disables the track when true
 sliderSize | number | 4 | Px height of slider if horizontal, width if vertical
 thumbSize | number | `sliderSize * 2` | Height and width of thumb in px
 sliderColor | string | `#9E9E9E` | Color of slider
 trackColor | string | `#03A9F4` | Color of track and label
 thumbColor | string | `#fff` | Color of thumb
-customThumb | element | undefined | Pass in a single React element to use as your thumb, replacing the default
+customThumb | element | `undefined` | Pass in a single React element to use as your thumb, replacing the default
 
 ## Commands
 
