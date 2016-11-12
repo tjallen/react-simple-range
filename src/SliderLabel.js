@@ -14,21 +14,14 @@ const SliderLabel = ({ position, color, vertical, value, thumbSize, sliderSize }
     width: '20px',
     height: '20px',
     borderRadius: '2px',
-    get left() {
-      return vertical ? undefined : `${position}%`;
-    },
-    get top() {
-      return vertical ? undefined : '-35px';
-    },
-    get marginLeft() {
-      return vertical ? `${labelCentering}px` : '-10px';
-    },
-    get bottom() {
-      return vertical ? `${position}%` : undefined;
-    },
+    get bottom() { return !vertical ? undefined : `${position}%`; },
+    get left() { return !vertical ? `${position}%` : undefined; },
+    get top() { return !vertical ? '-35px' : undefined; },
+    get marginLeft() { return !vertical ? '-10px' : `${labelCentering}px`; },
     get marginBottom() {
-      return vertical ? `${labelVerticalOffset}px` : undefined;
-    },
+      return !vertical
+      ? undefined
+      : `${labelVerticalOffset}px`; },
   };
   const pointerStyles = {
     position: 'absolute',

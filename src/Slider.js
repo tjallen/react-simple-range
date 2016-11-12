@@ -221,22 +221,22 @@ export default class Slider extends Component {
       cursor: 'pointer',
       margin: '0 auto',
       get padding() {
-        return vertical ? `0 ${eventWrapperPadding}px` : `${eventWrapperPadding}px 0`;
+        return !vertical
+        ? `${eventWrapperPadding}px 0`
+        : `0 ${eventWrapperPadding}px`;
       },
-      get width() {
-        return vertical ? `${sliderSize}px` : 'auto';
-      },
+      get width() { return !vertical ? 'auto' : `${sliderSize}px`; },
     };
     const sliderStyle = {
       backgroundColor: this.props.sliderColor,
       position: 'relative',
       overflow: 'visible',
       get height() {
-        return vertical ? verticalSliderHeight : `${sliderSize}px`;
+        return !vertical
+        ? `${sliderSize}px`
+        : verticalSliderHeight;
       },
-      get width() {
-        return vertical ? `${sliderSize}px` : '100%';
-      },
+      get width() { return !vertical ? '100%' : `${sliderSize}px`; },
     };
     return (
       <div

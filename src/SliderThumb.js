@@ -1,34 +1,37 @@
 import React, { PropTypes } from 'react';
 
-const SliderThumb = ({ customThumb, disableThumb, position, thumbSize, sliderSize, color, vertical, value }) => {
+const SliderThumb = ({
+  customThumb,
+  disableThumb,
+  position,
+  thumbSize,
+  sliderSize,
+  color,
+  vertical,
+ }) => {
   let defaultThumb;
   const thumbCentering = (sliderSize - thumbSize) * 0.5;
   const thumbWrapperStyles = {
     position: 'absolute',
-    get left() {
-      return vertical ? undefined : `${position}%`;
-    },
-    get top() {
-      return vertical ? undefined : '0px';
-    },
-    get bottom() {
-      return vertical ? `${position}%` : undefined;
-    },
+    get left() { return !vertical ? `${position}%` : undefined; },
+    get top() { return !vertical ? '0px' : undefined; },
+    get bottom() { return !vertical ? undefined : `${position}%`; },
+    get marginTop() { return !vertical ? `${thumbCentering}px` : undefined; },
     get marginLeft() {
-      return vertical ? `${thumbCentering}px` : `-${thumbSize * 0.5}px`;
-    },
-    get marginTop() {
-      return vertical ? undefined : `${thumbCentering}px`;
+      return !vertical
+      ? `-${thumbSize * 0.5}px`
+      : `${thumbCentering}px`;
     },
     get marginBottom() {
-      return vertical ? `-${thumbSize * 0.5}px` : undefined;
+      return !vertical
+      ? undefined
+      : `-${thumbSize * 0.5}px`;
     },
   };
   if (!customThumb) {
     const defaultThumbStyles = {
       backgroundColor: `${color}`,
       opacity: (disableThumb ? '0' : '1'),
-      // opacity: '0.5',
       borderRadius: '100%',
       height: `${thumbSize}px`,
       width: `${thumbSize}px`,
@@ -50,6 +53,7 @@ SliderThumb.propTypes = {
   thumbSize: PropTypes.number,
   color: PropTypes.string,
   vertical: PropTypes.bool,
+  disableThumb: PropTypes.bool,
   customThumb: PropTypes.node,
 };
 export default SliderThumb;

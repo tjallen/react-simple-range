@@ -2,16 +2,12 @@ import React, { PropTypes } from 'react';
 
 const SliderTrack = ({ trackLength, color, vertical }) => {
   let trackStyles = {
-    width: `${trackLength}%`,
-    height: '100%',
     backgroundColor: color,
+    get width() { return !vertical ? `${trackLength}%` : '100%'; },
+    get height() { return !vertical ? '100%' : `${trackLength}%`; },
+    get position() { return !vertical ? undefined : 'absolute'; },
+    get bottom() { return !vertical ? undefined : '0'; },
   };
-  if (vertical) {
-    trackStyles.height = `${trackLength}%`;
-    trackStyles.width = '100%';
-    trackStyles.position = 'absolute';
-    trackStyles.bottom = '0';
-  }
   return (
     <div style={trackStyles}></div>
   );
