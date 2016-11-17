@@ -9,8 +9,6 @@ A simple React slider component for inputting a number value within a range.
 
 _nb: builds post v1.2.1 should be fairly stable, but releases are being left marked as pre-release until test coverage is improved_
 
-[example](http://thomjamesallen.com/projects/)
-
 ## Examples
 
 - For local examples check out the [Development](#development) section below
