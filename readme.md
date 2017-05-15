@@ -40,7 +40,7 @@ Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/po
 ## Props
 
 Name | Type | Default | Description
----|---|---|---|---
+---|---|---|---
 min | number | 0 | Minimum slider value
 max | number | 100 | Maximum slider value
 step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
