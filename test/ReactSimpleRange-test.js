@@ -7,9 +7,16 @@ expect.extend(expectJSX);
 
 import ReactSimpleRange from '../src/index.js';
 
+let lastOnChangeCall = null;
+
+function onChange(state) {
+  lastOnChangeCall = state;
+}
+
 const wrapper = shallow(<ReactSimpleRange />);
 const wrapperWithValue = shallow(<ReactSimpleRange value={69} />);
 const wrapperWithDefaultValue = shallow(<ReactSimpleRange defaultValue={11} />);
+const wrapperWithOnChange = shallow(<ReactSimpleRange id="id" onChange={onChange} />);
 
 describe('ReactSimpleRange', () => {
   it('renders without exploding', () => {
@@ -29,6 +36,13 @@ describe('ReactSimpleRange', () => {
   });
   it('passes a specified value prop to SliderThumb as props.position', () => {
     expect(wrapperWithValue.find('SliderThumb').prop('position')).toEqual(69);
+  });
+  it('passes id to the onChange handler', () => {
+    lastOnChangeCall = null;
+    wrapperWithOnChange.instance().handleChange();
+    expect(lastOnChangeCall)
+      .toNotEqual(null)
+      .toInclude({ id: 'id' });
   });
 });
 
@@ -57,4 +71,3 @@ describe('SliderThumb', () => {
     expect(wrapperWithValue.find('SliderThumb').prop('position')).toEqual(69);
   });
 });
-

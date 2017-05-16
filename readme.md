@@ -44,7 +44,8 @@ Name | Type | Default | Description
 min | number | 0 | Minimum slider value
 max | number | 100 | Maximum slider value
 step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
-onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this!
+id | string | `null` | Identifier that is passed to the onChange handler (see below)
+onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this! See below for more information
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | 0 | Set initial value of slider
 vertical | boolean | `false` | Set slider to vertical when true
@@ -59,6 +60,21 @@ sliderColor | string | `#9E9E9E` | Color of slider
 trackColor | string | `#03A9F4` | Color of track and label
 thumbColor | string | `#fff` | Color of thumb
 customThumb | element | `undefined` | Pass in a single React element to use as your thumb, replacing the default
+
+## The onChange handler
+
+The onChange handler receives one argument: the new state of the component.
+It contains the following properties:
+
+Name | Type | Description
+---|---|---
+value|number|Current value
+min|number|Minimum value (from props)
+max|number|Maximum value (from props)
+range|number|Difference between `max` and `min`
+step|number|Step value (from props)
+ratio|number|Percentage of bar filled
+thumbSize|number|Thumb size value (from props)
 
 ## Commands
 
