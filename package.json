@@ -44,8 +44,8 @@
     "eslint-plugin-react": "^5.2.2",
     "expect": "^1.20.2",
     "expect-jsx": "^2.6.0",
-    "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.22.0",
+    "husky": "^0.13.4",
     "mocha": "^3.0.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
@@ -68,14 +68,12 @@
     "lib": "webpack --config webpack.config-publish.babel.js",
     "pub": "npm run lib && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git cz"
+    "commit": "git cz",
+    "precommit": "npm run test"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "npm run test"
     }
   },
   "files": []
