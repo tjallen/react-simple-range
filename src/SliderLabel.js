@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const SliderLabel = ({ position, color, vertical, value, thumbSize, sliderSize }) => {
   const labelCentering = -10 + (sliderSize * 0.5);

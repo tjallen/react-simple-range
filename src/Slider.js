@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import SliderThumb from './SliderThumb';
 import SliderLabel from './SliderLabel';
