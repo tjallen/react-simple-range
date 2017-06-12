@@ -76,5 +76,6 @@
     "ghooks": {
       "pre-commit": "npm run test"
     }
-  }
+  },
+  "files": []
 }
