@@ -27,6 +27,7 @@ export default class Slider extends Component {
     thumbColor: PropTypes.string,
     sliderSize: PropTypes.number,
     thumbSize: PropTypes.number,
+    id: PropTypes.string,
   }
   static defaultProps = {
     min: 0,
@@ -43,6 +44,7 @@ export default class Slider extends Component {
     trackColor: '#009688',
     thumbColor: '#009688',
     sliderSize: 4,
+    id: null,
   }
   constructor(props) {
     super(props);
@@ -189,7 +191,7 @@ export default class Slider extends Component {
     if (props.thumbSize === undefined) {
       thumbSize = (this.props.disableThumb ? 0 : props.sliderSize * 2);
     }
-    const { min, max, step } = props;
+    const { min, max, step, id } = props;
     const range = max - min;
     const ratio = Math.max((value - min), 0) * 100 / (max - min);
     this.setState({
@@ -200,6 +202,7 @@ export default class Slider extends Component {
       step,
       ratio,
       thumbSize,
+      id,
     });
   }
   render() {
@@ -283,4 +286,3 @@ export default class Slider extends Component {
     );
   }
 }
-
