@@ -71,7 +71,7 @@ thumbSize|number|Thumb size value (from props)
 
 ## Development
 
-Clone the repo then run ```npm start``` in the cloned directory to start webpack-dev-server and serve the examples.
+Clone the repo then run `npm install` in the cloned directory to install dependencies, then `npm start` to start webpack-dev-server and serve the examples.
 
 Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't
 
