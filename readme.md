@@ -76,7 +76,15 @@ step|number|Step value (from props)
 ratio|number|Percentage of bar filled
 thumbSize|number|Thumb size value (from props)
 
-## Commands
+## Contributing
+
+PRs are welcome. This project uses [Commitizen](https://github.com/commitizen/) with the cz-conventional-changelog adapter - see the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) for more info.
+
+This means that, when working on your local clone of this repo, instead of running `git commit` in your CLI, you should use `npm run cz` (after staging your changes as usual with `git add`).
+
+Commitizen will then walk you through the process of creating a commit using the guidelines.
+
+## Commands for local dev
 
 Name | Effect
 :---|:---
