@@ -75,5 +75,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "files": []
+  "files": ["lib/index.js"]
 }
