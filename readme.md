@@ -70,24 +70,32 @@ ratio|number|Percentage of bar filled
 thumbSize|number|Thumb size value (from props)
 
 ## Development
+1. Fork or clone the repo
+2. Run `npm install` in its directory to install dependencies
+3. Run `npm start` to start webpack-dev-server and serve the examples.
 
-Clone the repo then run `npm install` in the cloned directory to install dependencies, then `npm start` to start webpack-dev-server and serve the examples.
-
-Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't
+Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) for compatibility in development, but the component itself doesn't.
 
 ### Contributing
 
-PRs are welcome. This project uses [Commitizen](https://github.com/commitizen/) with the cz-conventional-changelog adapter - see the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) for more info.
+PRs are welcome. 
 
-This means that, when working on your fork, instead of running `git commit` in your CLI, you should use `npm run cz` (after staging your changes as usual with `git add`).
+This project uses [semantic-release](https://github.com/semantic-release/semantic-release) to automatically publish the NPM package and GitHub releases, as well as generate a changelog based on commit history and increment the semantic version number.
 
-Commitizen will then walk you through the process of creating a commit using the guidelines.
+[Commitizen](https://github.com/commitizen/) is installed to assist in following the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines).
+
+When contributing, please run the following commands to commit your changes:
+1. `git add <your files>` to stage changes as normal
+2. `npm run commit` to run tests then Git commit via Commitizen (if you've already run tests you can just use `git cz`)
+
+Commitizen will then walk you through the process of creating a commit using the guidelines to match the format.
 
 ## Commands for local dev
 
 Name | Effect
 :---|:---
 `npm start` | Starts a webpack-dev-server & serves the `examples/` directory to `http://localhost:8080/`
+`npm run commit` | Git commits using Commitizen to match commit format & runs tests as a precommit hook
 `npm run test` | Runs tests with `mocha`
 `npm run test:watch` | Runs tests in watch mode with `mocha --watch`
 
