@@ -68,12 +68,12 @@
     "lib": "webpack --config webpack.config-publish.babel.js",
     "pub": "npm run lib && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "cz": "git cz",
+    "commit": "git cz",
     "precommit": "npm run test"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   }
 }
