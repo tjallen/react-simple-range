@@ -185,7 +185,7 @@ export default class Slider extends Component {
     return Math.max(min, Math.min(val, max));
   }
   updateStateFromProps(props) {
-    let { value, thumbSize } = this.props;
+    let { value, thumbSize } = props;
     if (value === undefined) {
       value = (props.defaultValue !== undefined ? props.defaultValue : 0);
     }
