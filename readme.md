@@ -39,6 +39,7 @@ max | number | 100 | Maximum slider value
 step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
 id | string | `null` | Identifier that is passed to the onChange handler (see below)
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this! See below for more information
+onChangeComplete | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called on `mouseup` or `touchend`, sends the same values as the onChange handler, the only difference is they get sent when the interaction has ended
 value | number | `props.defaultValue` | Set current value of slider
 defaultValue | number | 0 | Set initial value of slider
 vertical | boolean | `false` | Set slider to vertical when true
@@ -69,6 +70,8 @@ step|number|Step value (from props)
 ratio|number|Percentage of bar filled
 thumbSize|number|Thumb size value (from props)
 
+* Alternatively, you can use the onChangeComplete handler, which only sends the argument at the end of the mouse drag
+
 ## Development
 1. Fork or clone the repo
 2. Run `npm install` in its directory to install dependencies
@@ -78,7 +81,7 @@ Note: The examples import the  [babel-polyfill](https://babeljs.io/docs/usage/po
 
 ### Contributing
 
-PRs are welcome. 
+PRs are welcome.
 
 This project uses [semantic-release](https://github.com/semantic-release/semantic-release) to automatically publish the NPM package and GitHub releases, as well as generate a changelog based on commit history and increment the semantic version number.
 

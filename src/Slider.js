@@ -17,6 +17,7 @@ export default class Slider extends Component {
     value: PropTypes.number,
     defaultValue: PropTypes.number,
     onChange: PropTypes.func,
+    onChangeComplete: PropTypes.func,
     vertical: PropTypes.bool,
     verticalSliderHeight: PropTypes.string,
     eventWrapperPadding: PropTypes.number,
@@ -35,6 +36,7 @@ export default class Slider extends Component {
     max: 100,
     step: 1,
     onChange: noOp,
+    onChangeComplete: noOp,
     vertical: false,
     verticalSliderHeight: '100px',
     eventWrapperPadding: 8,
@@ -83,6 +85,7 @@ export default class Slider extends Component {
       drag: false,
       displayLabel: false,
     });
+    this.props.onChangeComplete(this.state);
     this.removeEvents();
   }
   onMouseOrTouchMove(e) {

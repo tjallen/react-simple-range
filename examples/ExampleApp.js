@@ -37,6 +37,13 @@ const ExampleApp = () => {
         onChange={logOnChange}
       />
       <ExampleRSR
+        title="Set defaultValue, step in 10s, onChangeComplete callback provided (logs to console)"
+        label
+        step={10}
+        defaultValue={50}
+        onChangeComplete={logOnChange}
+      />
+      <ExampleRSR
         title="1 - 10 slider"
         label
         min={1}
