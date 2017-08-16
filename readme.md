@@ -103,8 +103,8 @@ Name | Effect
 :---|:---
 `npm start` | Starts a webpack-dev-server & serves the `examples/` directory to `http://localhost:8080/`
 `npm run commit` | Git commits using Commitizen to match commit format & runs tests as a precommit hook
-`npm run test` | Runs tests in watch mode with `mocha --watch`
-`npm run test:watch` | Single test run with `mocha`
+`npm run test` | Runs tests with `mocha`
+`npm run test:watch` | Runs tests in watch mode with `mocha --watch`
 
 ## Future
 

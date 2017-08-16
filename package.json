@@ -61,8 +61,8 @@
     "react-dom": "^15.5.4"
   },
   "scripts": {
-    "test:single": "mocha",
-    "test": "mocha --watch",
+    "test": "mocha",
+    "test:watch": "mocha --watch",
     "start": "webpack-dev-server --inline --hot --colors",
     "build:examples": "webpack --config webpack.config-buildexamples.babel.js -p",
     "libmin": "cross-env NODE_ENV=production webpack --config webpack.config-publish.babel.js",
