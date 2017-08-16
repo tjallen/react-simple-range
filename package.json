@@ -70,7 +70,7 @@
     "pub": "npm run lib && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "git cz",
-    "precommit": "npm run test:single"
+    "precommit": "npm run test"
   },
   "config": {
     "commitizen": {
