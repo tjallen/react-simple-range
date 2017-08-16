@@ -55,7 +55,9 @@ trackColor | string | `#03A9F4` | Color of track and label
 thumbColor | string | `#fff` | Color of thumb
 customThumb | element | `undefined` | Pass in a single React element to use as your thumb, replacing the default
 
-## The onChange handler
+## Change handlers
+
+### onChange
 
 The onChange handler receives one argument: the new state of the component.
 It contains the following properties:
@@ -70,7 +72,9 @@ step|number|Step value (from props)
 ratio|number|Percentage of bar filled
 thumbSize|number|Thumb size value (from props)
 
-* Alternatively, you can use the onChangeComplete handler, which only sends the argument at the end of the mouse drag
+### onChangeComplete
+
+An alternative change handler which only sends the argument at the end of the mouse drag
 
 ## Development
 1. Fork or clone the repo
