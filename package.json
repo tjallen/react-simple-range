@@ -37,28 +37,27 @@
     "commitizen": "^2.9.6",
     "cross-env": "^2.0.1",
     "cz-conventional-changelog": "^1.2.0",
-    "enzyme": "^2.4.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2",
     "expect": "^1.20.2",
-    "expect-jsx": "^2.6.0",
+    "expect-jsx": "^5.0.0",
     "html-webpack-plugin": "^2.22.0",
     "husky": "^0.13.4",
     "mocha": "^3.0.2",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-addons-test-utils": "^15.3.2",
-    "react-dom": "^15.5.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "semantic-release": "^4.3.5",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.16.5"
   },
   "peerDependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^15.5.4 || ^16.0.0"
   },
   "scripts": {
     "test": "mocha",
@@ -71,7 +70,8 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "git cz",
     "precommit": "npm run test",
-    "packdry": "npm run lib && npm pack"
+    "packdry": "npm run lib && npm pack",
+    "lint": "eslint src test"
   },
   "config": {
     "commitizen": {
