@@ -105,6 +105,7 @@ Name | Effect
 `npm run commit` | Git commits using Commitizen to match commit format & runs tests as a precommit hook
 `npm run test` | Runs tests with `mocha`
 `npm run test:watch` | Runs tests in watch mode with `mocha --watch`
+`npm run packdry` | Bundles & runs `npm pack`, create test build of the package as *.tgz
 
 ## Future
 
