@@ -104,25 +104,27 @@ export default class Slider extends Component {
     return sliderInfo;
   }
   addEvents(type) {
+    const iframeDocument = document.getElementById('modal-editor-frame').contentWindow.document;
     switch (type) {
       case 'mouse': {
-        document.addEventListener('mousemove', this.onMouseOrTouchMove);
-        document.addEventListener('mouseup', this.onInteractionEnd);
+        iframeDocument.addEventListener('mousemove', this.onMouseOrTouchMove);
+        iframeDocument.addEventListener('mouseup', this.onInteractionEnd);
         break;
       }
       case 'touch': {
-        document.addEventListener('touchmove', this.onMouseOrTouchMove);
-        document.addEventListener('touchend', this.onInteractionEnd);
+        iframeDocument.addEventListener('touchmove', this.onMouseOrTouchMove);
+        iframeDocument.addEventListener('touchend', this.onInteractionEnd);
         break;
       }
       default: // nothing
     }
   }
   removeEvents() {
-    document.removeEventListener('mousemove', this.onMouseOrTouchMove);
-    document.removeEventListener('mouseup', this.onInteractionEnd);
-    document.removeEventListener('touchmove', this.onMouseOrTouchMove);
-    document.removeEventListener('touchend', this.onInteractionEnd);
+    const iframeDocument = document.getElementById('modal-editor-frame').contentWindow.document;
+    iframeDocument.removeEventListener('mousemove', this.onMouseOrTouchMove);
+    iframeDocument.removeEventListener('mouseup', this.onInteractionEnd);
+    iframeDocument.removeEventListener('touchmove', this.onMouseOrTouchMove);
+    iframeDocument.removeEventListener('touchend', this.onInteractionEnd);
   }
   updateSliderValue(e, eventType) {
     const { max, min } = this.state;
