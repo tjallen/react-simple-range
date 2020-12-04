@@ -6,3 +6,4 @@ stats.json
 npm-debug.log
 package
 *.tgz
+.idea

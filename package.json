@@ -1,6 +1,6 @@
 {
   "name": "react-simple-range",
-  "version": "0.0.0-semantically-release",
+  "version": "2.0.0-prerelease",
   "description": "A simple React component to input a number between a min and a max value using a slider",
   "keywords": [
     "react",
@@ -34,9 +34,7 @@
     "babel-polyfill": "^6.13.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.11.1",
-    "commitizen": "^2.9.6",
     "cross-env": "^2.0.1",
-    "cz-conventional-changelog": "^1.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^2.13.1",
@@ -47,12 +45,10 @@
     "expect": "^1.20.2",
     "expect-jsx": "^5.0.0",
     "html-webpack-plugin": "^2.22.0",
-    "husky": "^0.13.4",
     "mocha": "^3.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "semantic-release": "^8.2.0",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.16.5"
   },
@@ -68,15 +64,8 @@
     "lib": "webpack --config webpack.config-publish.babel.js",
     "pub": "npm run lib && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git cz",
-    "precommit": "npm run test",
     "packdry": "npm run lib && npm pack",
     "lint": "eslint src test"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "files": [
     "lib/index.js"

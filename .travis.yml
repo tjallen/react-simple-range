@@ -15,7 +15,7 @@ script:
   - npm run test
   - npm run lib
 after_success:
-  - npm run semantic-release
+  - npm publish
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
