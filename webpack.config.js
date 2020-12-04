@@ -1,40 +1,38 @@
-const path = require('path');
-const HtmlWebpackPlugin = require( 'html-webpack-plugin');
-
-// cleaner paths
-const PATHS = {
-  src: path.join(__dirname, 'src'),
-  dist: path.join(__dirname, 'dist'),
-  examples: path.join(__dirname, 'examples'),
-};
-
+var path = require('path')
 module.exports = {
+  mode: "production",
+
+  optimization: {
+    minimize: false
+  },
+
   entry: {
-    src: PATHS.examples,
-    vendor: [
-      'react',
-      'react-dom',
-    ],
+    'react-simple-range': './src/components/Slider.js',
   },
+
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom',
+  },
+
   output: {
-    path: PATHS.dev,
-    filename: 'bundle.js',
+    filename: 'index.js',
+    chunkFilename: '[id].chunk.js',
+    path: path.join(__dirname, 'lib'),
+    publicPath: '/',
+    libraryTarget: 'umd',
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  plugins: [
-    // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new HtmlWebpackPlugin({
-      template: 'examples/example.html',
-    }),
-  ],
+
   module: {
     rules: [
       {
+        test: /\.(css|scss|pcss)$/,
+        use: ['style-loader', 'css-loader?modules'],
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
       },
     ],
   },
