@@ -7,3 +7,4 @@ npm-debug.log
 package
 *.tgz
 .idea
+.DS_Store
