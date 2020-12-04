@@ -22,7 +22,7 @@ function getPlugins() {
 module.exports = {
 
   entry: {
-    'react-simple-range': './src/index.js',
+    'react-simple-range': './src/components/Slider.js',
   },
 
   externals: {

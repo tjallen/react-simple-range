@@ -9,46 +9,6 @@ import SliderTrack from './SliderTrack';
 function noOp() {}
 
 export default class Slider extends Component {
-  static propTypes = {
-    children: PropTypes.element,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    value: PropTypes.number,
-    defaultValue: PropTypes.number,
-    onChange: PropTypes.func,
-    onChangeComplete: PropTypes.func,
-    vertical: PropTypes.bool,
-    verticalSliderHeight: PropTypes.string,
-    eventWrapperPadding: PropTypes.number,
-    label: PropTypes.bool,
-    disableTrack: PropTypes.bool,
-    disableThumb: PropTypes.bool,
-    sliderColor: PropTypes.string,
-    trackColor: PropTypes.string,
-    thumbColor: PropTypes.string,
-    sliderSize: PropTypes.number,
-    thumbSize: PropTypes.number,
-    id: PropTypes.string,
-  }
-  static defaultProps = {
-    min: 0,
-    max: 100,
-    step: 1,
-    onChange: noOp,
-    onChangeComplete: noOp,
-    vertical: false,
-    verticalSliderHeight: '100px',
-    eventWrapperPadding: 8,
-    label: false,
-    disableTrack: false,
-    disableThumb: false,
-    sliderColor: '#B9B9B9',
-    trackColor: '#009688',
-    thumbColor: '#009688',
-    sliderSize: 4,
-    id: null,
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -289,4 +249,44 @@ export default class Slider extends Component {
       </div>
     );
   }
+}
+Slider.propTypes = {
+  children: PropTypes.element,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  value: PropTypes.number,
+  defaultValue: PropTypes.number,
+  onChange: PropTypes.func,
+  onChangeComplete: PropTypes.func,
+  vertical: PropTypes.bool,
+  verticalSliderHeight: PropTypes.string,
+  eventWrapperPadding: PropTypes.number,
+  label: PropTypes.bool,
+  disableTrack: PropTypes.bool,
+  disableThumb: PropTypes.bool,
+  sliderColor: PropTypes.string,
+  trackColor: PropTypes.string,
+  thumbColor: PropTypes.string,
+  sliderSize: PropTypes.number,
+  thumbSize: PropTypes.number,
+  id: PropTypes.string,
+}
+Slider.defaultProps = {
+  min: 0,
+  max: 100,
+  step: 1,
+  onChange: noOp,
+  onChangeComplete: noOp,
+  vertical: false,
+  verticalSliderHeight: '100px',
+  eventWrapperPadding: 8,
+  label: false,
+  disableTrack: false,
+  disableThumb: false,
+  sliderColor: '#B9B9B9',
+  trackColor: '#009688',
+  thumbColor: '#009688',
+  sliderSize: 4,
+  id: null,
 }

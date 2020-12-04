@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 
-import ReactSimpleRange from '../src/index.js';
+import ReactSimpleRange from '../src/components';
 
 let lastOnChangeCall = null;
 

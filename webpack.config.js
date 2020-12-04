@@ -1,8 +1,5 @@
-/* eslint-disable global-require, no-unused-vars */
-
-import webpack from 'webpack';
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require( 'html-webpack-plugin');
 
 // cleaner paths
 const PATHS = {
@@ -24,20 +21,20 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new HtmlWebpackPlugin({
       template: 'examples/example.html',
     }),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
       },
     ],
   },

@@ -30,10 +30,10 @@ const ExampleApp = () => {
       <p>Note: All component instances barring the first are provided with the "label" prop to display their value for the purpose of these examples.</p>
       <ExampleRSR title="No props" />
       <ExampleRSR
-        title="Set defaultValue, step in 10s, onChange callback provided (logs to console)"
+        title="set defaultvalue, step in 10s, onchange callback provided (logs to console)"
         label
         step={10}
-        defaultValue={50}
+        defaultvalue={50}
         onChange={logOnChange}
       />
       <ExampleRSR
