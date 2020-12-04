@@ -7,7 +7,7 @@ module.exports = {
   },
 
   entry: {
-    'react-simple-range': './src/components/Slider.js',
+    'react-simple-range': './src/components/ReactSimpleRange.js',
   },
 
   externals: {

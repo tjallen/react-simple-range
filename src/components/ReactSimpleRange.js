@@ -8,7 +8,7 @@ import SliderTrack from './SliderTrack';
 
 function noOp() {}
 
-export default class Slider extends Component {
+export default class ReactSimpleRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -250,7 +250,7 @@ export default class Slider extends Component {
     );
   }
 }
-Slider.propTypes = {
+ReactSimpleRange.propTypes = {
   children: PropTypes.element,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -272,7 +272,7 @@ Slider.propTypes = {
   thumbSize: PropTypes.number,
   id: PropTypes.string,
 }
-Slider.defaultProps = {
+ReactSimpleRange.defaultProps = {
   min: 0,
   max: 100,
   step: 1,
