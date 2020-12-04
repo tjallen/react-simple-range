@@ -57,7 +57,7 @@
     "test:watch": "mocha --watch",
     "start": "styleguidist server",
     "lib": "webpack --config webpack.config-publish.babel.js",
-    "pub": "npm run lib && npm publish",
+    "pub": "npm run lib && npm publish"
   },
   "files": [
     "lib/index.js"
