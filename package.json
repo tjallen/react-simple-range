@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^5.2.2",
     "expect": "^1.20.2",
     "expect-jsx": "^5.0.0",
+    "jest": "^26.6.3",
     "mocha": "^3.0.2",
     "prettier": "^2.2.1",
     "prop-types": "^15.6.0",
@@ -54,7 +55,7 @@
     "react": "^15.5.4 || ^16.0.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "test:watch": "mocha --watch",
     "start": "styleguidist server",
     "lib": "webpack --config webpack.config-publish.babel.js",
