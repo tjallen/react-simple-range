@@ -1,67 +1,68 @@
 {
-  "name": "react-simple-range",
-  "version": "2.0.0-prerelease",
-  "description": "A simple React component to input a number between a min and a max value using a slider",
-  "keywords": [
-    "react",
-    "react-component",
-    "input",
-    "range",
-    "slider",
-    "number"
-  ],
-  "tags": [
-    "react",
-    "input",
-    "range"
-  ],
-  "main": "./lib/index.js",
-  "author": {
-    "name": "Thom Allen",
-    "url": "https://github.com/tjallen"
-  },
-  "license": "ISC",
-  "homepage": "https://github.com/tjallen/react-simple-range",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tjallen/react-simple-range.git"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.12.7",
-    "@babel/register": "^7.12.1",
-    "babel-loader": "^8.2.2",
-    "cross-env": "^2.0.1",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "eslint-config-airbnb": "^8.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^1.5.5",
-    "eslint-plugin-react": "^5.2.2",
-    "expect": "^1.20.2",
-    "expect-jsx": "^5.0.0",
-    "jest": "^26.6.3",
-    "mocha": "^3.0.2",
-    "prettier": "^2.2.1",
-    "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-styleguidist": "^11.1.4",
-    "webpack": "^5.9.0"
-  },
-  "peerDependencies": {
-    "react": "^15.5.4 || ^16.0.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:watch": "mocha --watch",
-    "start": "styleguidist server",
-    "lib": "webpack --config webpack.config-publish.babel.js",
-    "pub": "npm run lib && npm publish"
-  },
-  "files": [
-    "lib/index.js"
-  ]
+    "name": "react-simple-range",
+    "version": "2.0.0-prerelease",
+    "description": "A simple React component to input a number between a min and a max value using a slider",
+    "keywords": [
+        "react",
+        "react-component",
+        "input",
+        "range",
+        "slider",
+        "number"
+    ],
+    "tags": [
+        "react",
+        "input",
+        "range"
+    ],
+    "main": "./lib/index.js",
+    "author": {
+        "name": "Thom Allen",
+        "url": "https://github.com/tjallen"
+    },
+    "license": "ISC",
+    "homepage": "https://github.com/tjallen/react-simple-range",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tjallen/react-simple-range.git"
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/polyfill": "^7.12.1",
+        "@babel/preset-env": "^7.12.7",
+        "@babel/preset-react": "^7.12.7",
+        "@babel/register": "^7.12.1",
+        "@testing-library/react": "^11.2.2",
+        "babel-loader": "^8.2.2",
+        "cross-env": "^2.0.1",
+        "enzyme": "^3.2.0",
+        "enzyme-adapter-react-16": "^1.1.0",
+        "eslint-config-airbnb": "^8.0.0",
+        "eslint-plugin-import": "^1.16.0",
+        "eslint-plugin-jsx-a11y": "^1.5.5",
+        "eslint-plugin-react": "^5.2.2",
+        "expect": "^1.20.2",
+        "expect-jsx": "^5.0.0",
+        "jest": "^26.6.3",
+        "mocha": "^3.0.2",
+        "prettier": "^2.2.1",
+        "prop-types": "^15.6.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-styleguidist": "^11.1.4",
+        "webpack": "^5.9.0"
+    },
+    "peerDependencies": {
+        "react": "^15.5.4 || ^16.0.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "start": "styleguidist server",
+        "lib": "webpack --config webpack.config-publish.babel.js",
+        "pub": "npm run lib && npm publish"
+    },
+    "files": [
+        "lib/index.js"
+    ]
 }
