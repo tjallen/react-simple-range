@@ -10,12 +10,13 @@ const SliderLabel = ({
     sliderSize,
 }) => {
     const labelCentering = -10 + sliderSize * 0.5;
-    const labelVerticalOffset = 6 + thumbSize * 0.6;
+    const labelVerticalOffset = 8 + thumbSize * 0.6;
     const labelWrapperStyles = {
         position: "absolute",
         backgroundColor: color,
         color: "#fff",
         fontSize: "12px",
+        fontFamily: "sans-serif",
         textAlign: "center",
         margin: "0",
         zIndex: "5",
@@ -29,7 +30,7 @@ const SliderLabel = ({
             return !vertical ? `${position}%` : undefined;
         },
         get top() {
-            return !vertical ? "-35px" : undefined;
+            return !vertical ? "-30px" : undefined;
         },
         get marginLeft() {
             return !vertical ? "-10px" : `${labelCentering}px`;
@@ -54,7 +55,7 @@ const SliderLabel = ({
     return (
         <div style={labelWrapperStyles}>
             <span>{value}</span>
-            <div style={pointerStyles}></div>
+            <div style={pointerStyles} />
         </div>
     );
 };
