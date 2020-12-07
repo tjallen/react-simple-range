@@ -1,142 +1,154 @@
 /* eslint-disable no-console */
-import React, { Component } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
 
 function noOp() {}
 
-export default class ReactSimpleRange extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            drag: false,
-        };
-        this.onInteractionStart = this.onInteractionStart.bind(this);
-        this.onMouseOrTouchMove = this.onMouseOrTouchMove.bind(this);
-        this.onInteractionEnd = this.onInteractionEnd.bind(this);
-    }
-    componentWillMount() {
-        this.updateStateFromProps(this.props);
-    }
-    componentDidMount() {
-        if (this.props.onChange.name === "noOp") {
-            console.warn(
-                `A react-simple-range component was not provided an onChange prop.
-        \nRecommend passing down a function as onChange else this component is purely cosmetic`
-            );
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        this.updateStateFromProps(nextProps);
-    }
-    onInteractionStart(e) {
-        const eventType = e.touches !== undefined ? "touch" : "mouse";
-        const leftMouseButton = 0;
-        if (eventType === "mouse" && e.button !== leftMouseButton) return;
-        this.updateSliderValue(e, eventType);
-        this.setState({ drag: true, displayLabel: true });
-        this.addEvents(eventType);
-        e.preventDefault();
-    }
-    onInteractionEnd() {
-        this.setState({
-            drag: false,
-            displayLabel: false,
+export const ReactSimpleRange = (props) => {
+    const sliderRef = useRef(null);
+    const defaultSliderValue = props.defaultValue || props.value || 0;
+    const defaultSliderState = {
+        value: defaultSliderValue,
+        min: props.min,
+        max: props.max,
+        range: props.max - props.min,
+        step: props.step,
+        thumbSize:
+            props.thumbSize || props.disableThumb ? 0 : props.sliderSize * 2,
+        ratio:
+            (Math.max(defaultSliderValue - props.min, 0) * 100) /
+            (props.max - props.min),
+    };
+    const [sliderState, setSliderState] = useState(defaultSliderState);
+    const [drag, setDrag] = useState(false);
+    const [displayLabel, setDisplayLabel] = useState(false);
+
+    const mergeSliderState = (updatedProperties) => {
+        setSliderState({
+            ...sliderState,
+            ...updatedProperties,
         });
-        this.props.onChangeComplete(this.state);
-        this.removeEvents();
-    }
-    onMouseOrTouchMove(e) {
-        const eventType = e.touches !== undefined ? "touch" : "mouse";
-        if (!this.state.drag) return;
-        this.updateSliderValue(e, eventType);
-        e.stopPropagation();
-    }
-    getSliderInfo() {
-        const sl = this.refs.slider;
-        const sliderInfo = {
+    };
+
+    const didInitialMount = useRef(false);
+    const previousRatio = useRef(0);
+    const previousDrag = useRef(false);
+
+    useEffect(() => {
+        if (didInitialMount.current === false) {
+            didInitialMount.current = true;
+            return;
+        }
+        const ratioHasChanged = sliderState.ratio !== previousRatio.current;
+        if (ratioHasChanged) {
+            props.onChange && props.onChange(sliderState, props.id);
+            previousRatio.current = sliderState.ratio;
+        }
+        if (drag !== previousDrag.current) {
+            if (previousDrag.current === true && drag === false) {
+                props.onChangeComplete(sliderState, props.id);
+            }
+            previousDrag.current = drag;
+        }
+    });
+
+    const handleInteractionStart = (event) => {
+        const eventType = event.touches !== undefined ? "touch" : "mouse";
+        const leftMouseButton = 0;
+        if (eventType === "mouse" && event.button !== leftMouseButton) return;
+        updateSliderValue(event, eventType);
+        setDrag(true);
+        setDisplayLabel(true);
+        addEvents(eventType);
+        event.preventDefault();
+    };
+
+    const handleInteractionEnd = () => {
+        setDrag(false);
+        setDisplayLabel(false);
+        removeEvents();
+    };
+
+    const onMouseOrTouchMove = (event) => {
+        const eventType = event.touches !== undefined ? "touch" : "mouse";
+        updateSliderValue(event, eventType);
+        event.stopPropagation();
+    };
+
+    const getSliderInfo = () => {
+        const sl = sliderRef.current;
+        return {
             bounds: sl.getBoundingClientRect(),
             length: sl.clientWidth,
             height: sl.clientHeight,
         };
-        return sliderInfo;
-    }
-    addEvents(type) {
+    };
+
+    const addEvents = (type) => {
         switch (type) {
             case "mouse": {
-                document.addEventListener("mousemove", this.onMouseOrTouchMove);
-                document.addEventListener("mouseup", this.onInteractionEnd);
+                document.addEventListener("mousemove", onMouseOrTouchMove);
+                document.addEventListener("mouseup", handleInteractionEnd);
                 break;
             }
             case "touch": {
-                document.addEventListener("touchmove", this.onMouseOrTouchMove);
-                document.addEventListener("touchend", this.onInteractionEnd);
+                document.addEventListener("touchmove", onMouseOrTouchMove);
+                document.addEventListener("touchend", handleInteractionEnd);
                 break;
             }
             default: // nothing
         }
-    }
-    removeEvents() {
-        document.removeEventListener("mousemove", this.onMouseOrTouchMove);
-        document.removeEventListener("mouseup", this.onInteractionEnd);
-        document.removeEventListener("touchmove", this.onMouseOrTouchMove);
-        document.removeEventListener("touchend", this.onInteractionEnd);
-    }
-    updateSliderValue(e, eventType) {
-        const { max, min } = this.state;
-        const { vertical } = this.props;
-        let { value } = this.state;
+    };
+
+    const removeEvents = () => {
+        document.removeEventListener("mousemove", onMouseOrTouchMove);
+        document.removeEventListener("mouseup", handleInteractionEnd);
+        document.removeEventListener("touchmove", onMouseOrTouchMove);
+        document.removeEventListener("touchend", handleInteractionEnd);
+    };
+
+    const updateSliderValue = (event, eventType) => {
+        const { max, min } = sliderState;
+        const { vertical } = props;
         const xCoords =
-            (eventType !== "touch" ? e.pageX : e.touches[0].pageX) -
+            (eventType !== "touch" ? event.pageX : event.touches[0].pageX) -
             window.pageXOffset;
         const yCoords =
-            (eventType !== "touch" ? e.pageY : e.touches[0].pageY) -
+            (eventType !== "touch" ? event.pageY : event.touches[0].pageY) -
             window.pageYOffset;
         // compare position to slider length to get percentage
         let position;
         let lengthOrHeight;
         if (!vertical) {
-            position = xCoords - this.getSliderInfo().bounds.left;
-            lengthOrHeight = this.getSliderInfo().length;
+            position = xCoords - getSliderInfo().bounds.left;
+            lengthOrHeight = getSliderInfo().length;
         } else {
-            lengthOrHeight = this.getSliderInfo().height;
-            position =
-                lengthOrHeight - (yCoords - this.getSliderInfo().bounds.top);
+            lengthOrHeight = getSliderInfo().height;
+            position = lengthOrHeight - (yCoords - getSliderInfo().bounds.top);
         }
-        const percent = this.clampValue(
+        const percent = clampValue(
             +(position / lengthOrHeight).toFixed(2),
             0,
             1
         );
-        // convert perc -> value then match value to notch as per props/state.step
-        const rawValue = this.valueFromPercent(percent);
-        value = this.calculateMatchingNotch(rawValue);
-        // avoid repeated updates of the same value
-        if (value === this.state.value) return;
+
+        // convert percentage -> value then match value to notch as per props/state.step
+        const rawValue = valueFromPercent(percent);
+        const value = calculateMatchingNotch(rawValue);
         // percentage of the range to render the track/thumb to
         const ratio = ((value - min) * 100) / (max - min);
-        this.setState(
-            {
-                percent,
-                value,
-                ratio,
-            },
-            this.handleChange
-        );
-    }
-    handleChange() {
-        this.props.onChange(this.state);
-    }
-    valueFromPercent(perc) {
-        const { range, min } = this.state;
-        const val = range * perc + min;
-        return val;
-    }
-    calculateMatchingNotch(value) {
-        const { step, max, min } = this.state;
+        mergeSliderState({ value, ratio });
+    };
+    const valueFromPercent = (percentage) => {
+        const { range, min } = sliderState;
+        return range * percentage + min;
+    };
+
+    const calculateMatchingNotch = (value) => {
+        const { step, max, min } = sliderState;
         const values = [];
         for (let i = min; i <= max; i++) {
             values.push(i);
@@ -149,117 +161,96 @@ export default class ReactSimpleRange extends Component {
             }
         }
         // reduce over the potential notches and find which is the closest
-        const match = notches.reduce((prev, curr) => {
+        return notches.reduce((prev, curr) => {
             if (Math.abs(curr - value) < Math.abs(prev - value)) {
                 return curr;
             }
             return prev;
         });
-        return match;
-    }
-    clampValue(val, min, max) {
-        return Math.max(min, Math.min(val, max));
-    }
-    updateStateFromProps(props) {
-        let { value, thumbSize } = props;
-        if (value === undefined) {
-            value = props.defaultValue !== undefined ? props.defaultValue : 0;
-        }
-        if (props.thumbSize === undefined) {
-            thumbSize = this.props.disableThumb ? 0 : props.sliderSize * 2;
-        }
-        const { min, max, step, id } = props;
-        const range = max - min;
-        const ratio = (Math.max(value - min, 0) * 100) / (max - min);
-        this.setState({
-            value,
-            min,
-            max,
-            range,
-            step,
-            ratio,
-            thumbSize,
-            id,
-        });
-    }
-    render() {
-        const {
-            vertical,
-            sliderSize,
-            disableThumb,
-            disableTrack,
-            children,
-            label,
-            trackColor,
-            thumbColor,
-            verticalSliderHeight,
-            eventWrapperPadding,
-        } = this.props;
-        const eventWrapperStyle = {
-            height: "100%",
-            position: "relative",
-            cursor: "pointer",
-            margin: "0 auto",
-            get padding() {
-                return !vertical
-                    ? `${eventWrapperPadding}px 0`
-                    : `0 ${eventWrapperPadding}px`;
-            },
-            get width() {
-                return !vertical ? "auto" : `${sliderSize}px`;
-            },
-        };
+    };
 
-        const sliderStyle = {
-            backgroundColor: this.props.sliderColor,
-            position: "relative",
-            overflow: "visible",
-            get height() {
-                return !vertical ? `${sliderSize}px` : verticalSliderHeight;
-            },
-            get width() {
-                return !vertical ? "100%" : `${sliderSize}px`;
-            },
-        };
-        return (
-            <div
-                style={eventWrapperStyle}
-                onMouseDown={this.onInteractionStart}
-                onTouchStart={this.onInteractionStart}
-            >
-                <div ref="slider" style={sliderStyle}>
-                    {!disableTrack ? (
-                        <SliderTrack
-                            trackLength={this.state.ratio}
-                            color={trackColor}
-                            vertical={vertical}
-                        />
-                    ) : null}
-                    {label && this.state.displayLabel ? (
-                        <SliderLabel
-                            position={this.state.ratio}
-                            vertical={vertical}
-                            color={trackColor}
-                            value={this.state.value}
-                            sliderSize={sliderSize}
-                            thumbSize={this.state.thumbSize}
-                        />
-                    ) : null}
-                    <SliderThumb
-                        position={this.state.ratio}
+    const clampValue = (val, min, max) => {
+        return Math.max(min, Math.min(val, max));
+    };
+
+    const {
+        vertical,
+        sliderSize,
+        disableThumb,
+        disableTrack,
+        customThumb,
+        label,
+        trackColor,
+        thumbColor,
+        verticalSliderHeight,
+        eventWrapperPadding,
+    } = props;
+    const eventWrapperStyle = {
+        height: "100%",
+        position: "relative",
+        cursor: "pointer",
+        margin: "0 auto",
+        get padding() {
+            return !vertical
+                ? `${eventWrapperPadding}px 0`
+                : `0 ${eventWrapperPadding}px`;
+        },
+        get width() {
+            return !vertical ? "auto" : `${sliderSize}px`;
+        },
+    };
+
+    const sliderStyle = {
+        backgroundColor: props.sliderColor,
+        position: "relative",
+        overflow: "visible",
+        get height() {
+            return !vertical ? `${sliderSize}px` : verticalSliderHeight;
+        },
+        get width() {
+            return !vertical ? "100%" : `${sliderSize}px`;
+        },
+    };
+
+    return (
+        <div
+            style={eventWrapperStyle}
+            onMouseDown={handleInteractionStart}
+            onTouchStart={handleInteractionStart}
+        >
+            <div ref={sliderRef} style={sliderStyle}>
+                {!disableTrack ? (
+                    <SliderTrack
+                        trackLength={sliderState.ratio}
+                        color={trackColor}
                         vertical={vertical}
-                        customThumb={children}
-                        thumbSize={this.state.thumbSize}
-                        sliderSize={sliderSize}
-                        color={thumbColor}
-                        disableThumb={disableThumb}
-                        value={this.state.value}
                     />
-                </div>
+                ) : null}
+                {label && displayLabel ? (
+                    <SliderLabel
+                        position={sliderState.ratio}
+                        vertical={vertical}
+                        color={trackColor}
+                        value={sliderState.value}
+                        sliderSize={sliderSize}
+                        thumbSize={sliderState.thumbSize}
+                    />
+                ) : null}
+                <SliderThumb
+                    position={sliderState.ratio}
+                    vertical={vertical}
+                    customThumb={customThumb}
+                    thumbSize={sliderState.thumbSize}
+                    sliderSize={sliderSize}
+                    color={thumbColor}
+                    disableThumb={disableThumb}
+                    value={sliderState.value}
+                />
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
 ReactSimpleRange.propTypes = {
     children: PropTypes.element,
     min: PropTypes.number,
@@ -298,5 +289,5 @@ ReactSimpleRange.defaultProps = {
     trackColor: "#009688",
     thumbColor: "#009688",
     sliderSize: 4,
-    id: null,
+    id: "",
 };
