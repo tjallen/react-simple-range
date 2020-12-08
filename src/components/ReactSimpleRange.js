@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import { checkValidity } from "../utils";
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
@@ -25,6 +26,8 @@ export const ReactSimpleRange = (props) => {
     const [sliderState, setSliderState] = useState(defaultSliderState);
     const [drag, setDrag] = useState(false);
     const [displayLabel, setDisplayLabel] = useState(false);
+
+    checkValidity(props);
 
     const mergeSliderState = (updatedProperties) => {
         setSliderState({
@@ -217,9 +220,14 @@ export const ReactSimpleRange = (props) => {
             style={eventWrapperStyle}
             onMouseDown={handleInteractionStart}
             onTouchStart={handleInteractionStart}
+            data-testid="wrapper-events"
         >
-            <div ref={sliderRef} style={sliderStyle}>
-                {!disableTrack ? (
+            <div
+                data-testid="wrapper-slider"
+                ref={sliderRef}
+                style={sliderStyle}
+            >
+                {disableTrack === false ? (
                     <SliderTrack
                         trackLength={sliderState.ratio}
                         color={trackColor}
@@ -236,16 +244,18 @@ export const ReactSimpleRange = (props) => {
                         thumbSize={sliderState.thumbSize}
                     />
                 ) : null}
-                <SliderThumb
-                    position={sliderState.ratio}
-                    vertical={vertical}
-                    customThumb={customThumb}
-                    thumbSize={sliderState.thumbSize}
-                    sliderSize={sliderSize}
-                    color={thumbColor}
-                    disableThumb={disableThumb}
-                    value={sliderState.value}
-                />
+                {disableThumb === false && (
+                    <SliderThumb
+                        position={sliderState.ratio}
+                        vertical={vertical}
+                        customThumb={customThumb}
+                        thumbSize={sliderState.thumbSize}
+                        sliderSize={sliderSize}
+                        color={thumbColor}
+                        disableThumb={disableThumb}
+                        value={sliderState.value}
+                    />
+                )}
             </div>
         </div>
     );
