@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { checkValidity } from "../utils";
+import { checkValidity, clampValue } from "../utils";
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
@@ -63,10 +63,9 @@ export const ReactSimpleRange = (props) => {
         const leftMouseButton = 0;
         if (eventType === "mouse" && event.button !== leftMouseButton) return;
         updateSliderValue(event, eventType);
+        addEvents(eventType);
         setDrag(true);
         setDisplayLabel(true);
-        addEvents(eventType);
-        event.preventDefault();
     };
 
     const handleInteractionEnd = () => {
@@ -145,6 +144,7 @@ export const ReactSimpleRange = (props) => {
         const ratio = ((value - min) * 100) / (max - min);
         mergeSliderState({ value, ratio });
     };
+
     const valueFromPercent = (percentage) => {
         const { range, min } = sliderState;
         return range * percentage + min;
@@ -170,10 +170,6 @@ export const ReactSimpleRange = (props) => {
             }
             return prev;
         });
-    };
-
-    const clampValue = (val, min, max) => {
-        return Math.max(min, Math.min(val, max));
     };
 
     const {

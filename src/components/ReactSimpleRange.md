@@ -50,7 +50,7 @@ Custom thumb element
 Value
 
 ```js
-<ReactSimpleRange value={50} />
+<ReactSimpleRange value={70} />
 ```
 
 Default val

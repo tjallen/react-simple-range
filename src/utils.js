@@ -4,3 +4,7 @@ export const checkValidity = ({ min, max, step, defaultValue }) => {
     if (max % step !== 0) console.error("max must be evenly divisible by step");
     // todo check defaultValue within range?
 };
+
+export const clampValue = (val, min, max) => {
+    return Math.max(min, Math.min(val, max));
+};
