@@ -41,10 +41,10 @@ const SliderThumb = ({
             height: `${thumbSize}px`,
             width: `${thumbSize}px`,
         };
-        defaultThumb = <div style={defaultThumbStyles}></div>;
+        defaultThumb = <div style={defaultThumbStyles} />;
     }
     return (
-        <div style={thumbWrapperStyles}>
+        <div data-testid="slider-thumb" style={thumbWrapperStyles}>
             {customThumb}
             {defaultThumb && defaultThumb}
         </div>

@@ -17,7 +17,7 @@ const SliderTrack = ({ trackLength, color, vertical }) => {
             return !vertical ? undefined : "0";
         },
     };
-    return <div style={trackStyles}></div>;
+    return <div data-testid="slider-track" style={trackStyles} />;
 };
 SliderTrack.propTypes = {
     trackLength: PropTypes.number,

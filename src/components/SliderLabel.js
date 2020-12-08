@@ -53,7 +53,7 @@ const SliderLabel = ({
         zIndex: "4",
     };
     return (
-        <div style={labelWrapperStyles}>
+        <div data-testid="slider-label" style={labelWrapperStyles}>
             <span>{value}</span>
             <div style={pointerStyles} />
         </div>
