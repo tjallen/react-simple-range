@@ -9,57 +9,50 @@ import SliderTrack from "./SliderTrack";
 function noOp() {}
 
 export const ReactSimpleRange = (props) => {
-    const sliderRef = useRef(null);
-    const defaultSliderValue = props.defaultValue || props.value || 0;
-    const defaultSliderState = {
-        value: defaultSliderValue,
-        min: props.min,
-        max: props.max,
-        range: props.max - props.min,
-        step: props.step,
-        thumbSize:
-            props.thumbSize || props.disableThumb ? 0 : props.sliderSize * 2,
-        ratio:
-            (Math.max(defaultSliderValue - props.min, 0) * 100) /
-            (props.max - props.min),
+    const getRatio = (value, min, max) => {
+        return (Math.max(value - min, 0) * 100) / (max - min);
     };
-    const [sliderState, setSliderState] = useState(defaultSliderState);
+    const sliderRef = useRef(null);
+    const [value, setValue] = useState(props.defaultValue || props.value || 0);
+    const [ratio, setRatio] = useState(getRatio(value, props.min, props.max));
+    const thumbSize =
+        props.thumbSize || props.disableThumb ? 0 : props.sliderSize * 2;
     const [drag, setDrag] = useState(false);
     const [displayLabel, setDisplayLabel] = useState(false);
 
     checkValidity(props);
 
-    const mergeSliderState = (updatedProperties) => {
-        setSliderState({
-            ...sliderState,
-            ...updatedProperties,
-        });
-    };
-
     const didInitialMount = useRef(false);
-    const previousRatio = useRef(0);
+    const previousValue = useRef(value);
     const previousDrag = useRef(false);
 
+    // todo clean up useEffect, onChangeComplete correct behaviour w keyboard events etc
     useEffect(() => {
         if (didInitialMount.current === false) {
             didInitialMount.current = true;
             return;
         }
-        const ratioHasChanged = sliderState.ratio !== previousRatio.current;
-        if (ratioHasChanged) {
-            props.onChange && props.onChange(sliderState, props.id);
-            previousRatio.current = sliderState.ratio;
+        const valueChanged = value !== previousValue.current;
+        if (valueChanged) {
+            props.onChange && props.onChange({ value }, props.id);
+            previousValue.current = value;
         }
         if (drag !== previousDrag.current) {
             if (previousDrag.current === true && drag === false) {
-                props.onChangeComplete(sliderState, props.id);
+                props.onChangeComplete({ value }, props.id);
             }
             previousDrag.current = drag;
         }
-    });
+    }, [drag, value]);
+
+    const getEventType = (event) => {
+        if (event.touches) return "touch";
+        if (event.keyCode) return "keyboard";
+        return "mouse";
+    };
 
     const handleInteractionStart = (event) => {
-        const eventType = event.touches !== undefined ? "touch" : "mouse";
+        const eventType = getEventType(event);
         const leftMouseButton = 0;
         if (eventType === "mouse" && event.button !== leftMouseButton) return;
         updateSliderValue(event, eventType);
@@ -75,7 +68,7 @@ export const ReactSimpleRange = (props) => {
     };
 
     const onMouseOrTouchMove = (event) => {
-        const eventType = event.touches !== undefined ? "touch" : "mouse";
+        const eventType = getEventType(event);
         updateSliderValue(event, eventType);
         event.stopPropagation();
     };
@@ -113,8 +106,7 @@ export const ReactSimpleRange = (props) => {
     };
 
     const updateSliderValue = (event, eventType) => {
-        const { max, min } = sliderState;
-        const { vertical } = props;
+        const { max, min, vertical } = props;
         const xCoords =
             (eventType !== "touch" ? event.pageX : event.touches[0].pageX) -
             window.pageXOffset;
@@ -140,18 +132,17 @@ export const ReactSimpleRange = (props) => {
         // convert percentage -> value then match value to notch as per props/state.step
         const rawValue = valueFromPercent(percent);
         const value = calculateMatchingNotch(rawValue);
-        // percentage of the range to render the track/thumb to
-        const ratio = ((value - min) * 100) / (max - min);
-        mergeSliderState({ value, ratio });
+        setValue(value);
+        setRatio(getRatio(value, min, max));
     };
 
     const valueFromPercent = (percentage) => {
-        const { range, min } = sliderState;
-        return range * percentage + min;
+        const range = props.max - props.min;
+        return range * percentage + props.min;
     };
 
     const calculateMatchingNotch = (value) => {
-        const { step, max, min } = sliderState;
+        const { step, max, min } = props;
         const values = [];
         for (let i = min; i <= max; i++) {
             values.push(i);
@@ -211,11 +202,42 @@ export const ReactSimpleRange = (props) => {
         },
     };
 
+    const handleKeyboardEvent = (event) => {
+        const isArrowKey =
+            event.keyCode === 37 ||
+            event.keyCode === 38 ||
+            event.keyCode === 39 ||
+            event.keyCode === 40;
+        if (isArrowKey === false) return;
+        const isPositiveKey = event.keyCode === 38 || event.keyCode === 39;
+        const isNegativeKey = event.keyCode === 37 || event.keyCode === 40;
+        if (isPositiveKey) {
+            incrementValueByStep();
+        } else if (isNegativeKey) decrementValueByStep();
+    };
+
+    const incrementValueByStep = () => {
+        const { min, max, step } = props;
+        const newValue = clampValue(value + step, min, max);
+        setValue(newValue);
+        setRatio(getRatio(newValue, min, max));
+    };
+
+    const decrementValueByStep = () => {
+        const { max, min, step } = props;
+        const newValue = clampValue(value - step, min, max);
+        setValue(newValue);
+        setRatio(getRatio(newValue, min, max));
+    };
+
     return (
         <div
             style={eventWrapperStyle}
             onMouseDown={handleInteractionStart}
             onTouchStart={handleInteractionStart}
+            // todo? display label on keydown
+            onKeyDown={handleKeyboardEvent}
+            tabIndex="0"
             data-testid="wrapper-events"
         >
             <div
@@ -225,31 +247,31 @@ export const ReactSimpleRange = (props) => {
             >
                 {disableTrack === false ? (
                     <SliderTrack
-                        trackLength={sliderState.ratio}
+                        trackLength={ratio}
                         color={trackColor}
                         vertical={vertical}
                     />
                 ) : null}
                 {label && displayLabel ? (
                     <SliderLabel
-                        position={sliderState.ratio}
+                        position={ratio}
                         vertical={vertical}
                         color={trackColor}
-                        value={sliderState.value}
+                        value={value}
                         sliderSize={sliderSize}
-                        thumbSize={sliderState.thumbSize}
+                        thumbSize={thumbSize}
                     />
                 ) : null}
                 {disableThumb === false && (
                     <SliderThumb
-                        position={sliderState.ratio}
+                        position={ratio}
                         vertical={vertical}
                         customThumb={customThumb}
-                        thumbSize={sliderState.thumbSize}
+                        thumbSize={thumbSize}
                         sliderSize={sliderSize}
                         color={thumbColor}
                         disableThumb={disableThumb}
-                        value={sliderState.value}
+                        value={value}
                     />
                 )}
             </div>
