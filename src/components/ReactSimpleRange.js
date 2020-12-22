@@ -203,16 +203,16 @@ export const ReactSimpleRange = (props) => {
 
     const handleKeyDownEvent = (event) => {
         if (isArrowKey(event.keyCode) === false) return;
+        event.preventDefault();
         const isPositiveKey = event.keyCode === 38 || event.keyCode === 39;
         const isNegativeKey = event.keyCode === 37 || event.keyCode === 40;
-        event.preventDefault();
         if (isPositiveKey) {
-            setDrag(true);
             incrementValueByStep();
         } else if (isNegativeKey) {
-            setDrag(true);
             decrementValueByStep();
         }
+        setDrag(true);
+        setDisplayLabel(true);
     };
 
     const incrementValueByStep = () => {
@@ -232,6 +232,7 @@ export const ReactSimpleRange = (props) => {
     const handleKeyUpEvent = (event) => {
         if (isArrowKey(event.keyCode)) {
             setDrag(false);
+            setDisplayLabel(false);
         }
     };
 
@@ -240,7 +241,6 @@ export const ReactSimpleRange = (props) => {
             style={eventWrapperStyle}
             onMouseDown={handleInteractionStart}
             onTouchStart={handleInteractionStart}
-            // todo? display label on keydown
             onKeyDown={handleKeyDownEvent}
             onKeyUp={handleKeyUpEvent}
             tabIndex="0"
