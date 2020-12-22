@@ -69,6 +69,7 @@ export const ReactSimpleRange = (props) => {
     const onMouseOrTouchMove = (event) => {
         const eventType = getEventType(event);
         updateSliderValue(event, eventType);
+        event.preventDefault();
         event.stopPropagation();
     };
 
@@ -89,7 +90,9 @@ export const ReactSimpleRange = (props) => {
                 break;
             }
             case "touch": {
-                document.addEventListener("touchmove", onMouseOrTouchMove);
+                document.addEventListener("touchmove", onMouseOrTouchMove, {
+                    passive: false,
+                });
                 document.addEventListener("touchend", handleInteractionEnd);
                 break;
             }
@@ -100,7 +103,9 @@ export const ReactSimpleRange = (props) => {
     const removeEvents = () => {
         document.removeEventListener("mousemove", onMouseOrTouchMove);
         document.removeEventListener("mouseup", handleInteractionEnd);
-        document.removeEventListener("touchmove", onMouseOrTouchMove);
+        document.removeEventListener("touchmove", onMouseOrTouchMove, {
+            passive: false,
+        });
         document.removeEventListener("touchend", handleInteractionEnd);
     };
 
