@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { checkValidity, clampValue } from "../utils";
+import { checkValidity, clampValue, isArrowKey } from "../utils";
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
@@ -26,7 +26,6 @@ export const ReactSimpleRange = (props) => {
     const previousValue = useRef(value);
     const previousDrag = useRef(false);
 
-    // todo clean up useEffect, onChangeComplete correct behaviour w keyboard events etc
     useEffect(() => {
         if (didInitialMount.current === false) {
             didInitialMount.current = true;
@@ -202,18 +201,18 @@ export const ReactSimpleRange = (props) => {
         },
     };
 
-    const handleKeyboardEvent = (event) => {
-        const isArrowKey =
-            event.keyCode === 37 ||
-            event.keyCode === 38 ||
-            event.keyCode === 39 ||
-            event.keyCode === 40;
-        if (isArrowKey === false) return;
+    const handleKeyDownEvent = (event) => {
+        if (isArrowKey(event.keyCode) === false) return;
         const isPositiveKey = event.keyCode === 38 || event.keyCode === 39;
         const isNegativeKey = event.keyCode === 37 || event.keyCode === 40;
+        event.preventDefault();
         if (isPositiveKey) {
+            setDrag(true);
             incrementValueByStep();
-        } else if (isNegativeKey) decrementValueByStep();
+        } else if (isNegativeKey) {
+            setDrag(true);
+            decrementValueByStep();
+        }
     };
 
     const incrementValueByStep = () => {
@@ -230,13 +229,20 @@ export const ReactSimpleRange = (props) => {
         setRatio(getRatio(newValue, min, max));
     };
 
+    const handleKeyUpEvent = (event) => {
+        if (isArrowKey(event.keyCode)) {
+            setDrag(false);
+        }
+    };
+
     return (
         <div
             style={eventWrapperStyle}
             onMouseDown={handleInteractionStart}
             onTouchStart={handleInteractionStart}
             // todo? display label on keydown
-            onKeyDown={handleKeyboardEvent}
+            onKeyDown={handleKeyDownEvent}
+            onKeyUp={handleKeyUpEvent}
             tabIndex="0"
             data-testid="wrapper-events"
         >
