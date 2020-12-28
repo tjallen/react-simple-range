@@ -47,13 +47,7 @@ Custom thumb element
 <ReactSimpleRange customThumb={<div style={{ border: '1px solid black', height: 6, width: 10, background: 'white'}} />} />
 ```
 
-Value
-
-```js
-<ReactSimpleRange value={70} />
-```
-
-Default val
+Default value
 ```js
 <ReactSimpleRange defaultValue={70} />
 ```

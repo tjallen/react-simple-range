@@ -15,7 +15,7 @@ import SliderTrack from "./SliderTrack";
 
 function noOp() {}
 
-export const ReactSimpleRange = (props) => {
+const ReactSimpleRange = (props) => {
     const sliderRef = useRef(null);
     const [value, setValue] = useState(props.defaultValue || props.value || 0);
     const [ratio, setRatio] = useState(getRatio(value, props.min, props.max));
@@ -330,3 +330,5 @@ ReactSimpleRange.defaultProps = {
     sliderSize: 4,
     id: "",
 };
+
+export default ReactSimpleRange;
