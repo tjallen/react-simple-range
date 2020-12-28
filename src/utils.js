@@ -9,6 +9,10 @@ export const clampValue = (val, min, max) => {
     return Math.max(min, Math.min(val, max));
 };
 
+export const getRatio = (value, min, max) => {
+    return (Math.max(value - min, 0) * 100) / (max - min);
+};
+
 export const isArrowKey = (keyCode) => {
     return keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40;
 };
