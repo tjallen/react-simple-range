@@ -1,21 +1,27 @@
 sudo: false
 language: node_js
+deploy:
+  provider: npm
+  on:
+    tags: true
+  email: thomwork@gmail.com
+  api_key: NPM_TOKEN
 cache:
   directories:
     - node_modules
 notifications:
   email: false
 node_js:
-  - '8'
+  - '14'
 before_install:
-  - npm i -g npm@^5.0.0
+  - npm i -g npm@^6.0.0
 before_script:
   - npm prune
 script:
   - npm run test
   - npm run lib
 after_success:
-  - npm run semantic-release
+  - npm publish
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

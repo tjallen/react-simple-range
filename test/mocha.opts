@@ -1,4 +1,0 @@
---require test/babelhook
---require test/css-null-compiler
---require test/enzymeadapter
-test/*-test.js
