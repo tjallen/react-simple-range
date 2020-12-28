@@ -1,7 +1,14 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { checkValidity, clampValue, getRatio, isArrowKey } from "../utils";
+import {
+    checkValidity,
+    clampValue,
+    EVENT_TYPES,
+    getEventType,
+    getRatio,
+    isArrowKey,
+} from "../utils";
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
@@ -25,7 +32,7 @@ export const ReactSimpleRange = (props) => {
     useEffect(() => {
         const valueChanged = value !== previousValue.current;
         if (valueChanged) {
-            props.onChange && props.onChange({ value }, props.id);
+            props.onChange && props.onChange({ value, ratio }, props.id);
             previousValue.current = value;
         }
     }, [value]);
@@ -36,20 +43,15 @@ export const ReactSimpleRange = (props) => {
             return;
         }
         if (drag === false) {
-            props.onChangeComplete({ value }, props.id);
+            props.onChangeComplete({ value, ratio }, props.id);
         }
     }, [drag]);
-
-    const getEventType = (event) => {
-        if (event.touches) return "touch";
-        if (event.keyCode) return "keyboard";
-        return "mouse";
-    };
 
     const handleInteractionStart = (event) => {
         const eventType = getEventType(event);
         const leftMouseButton = 0;
-        if (eventType === "mouse" && event.button !== leftMouseButton) return;
+        if (eventType === EVENT_TYPES.MOUSE && event.button !== leftMouseButton)
+            return;
         updateSliderValue(event, eventType);
         addEvents(eventType);
         setDrag(true);
@@ -80,19 +82,19 @@ export const ReactSimpleRange = (props) => {
 
     const addEvents = (type) => {
         switch (type) {
-            case "mouse": {
+            case EVENT_TYPES.MOUSE: {
                 document.addEventListener("mousemove", onMouseOrTouchMove);
                 document.addEventListener("mouseup", handleInteractionEnd);
                 break;
             }
-            case "touch": {
+            case EVENT_TYPES.TOUCH: {
                 document.addEventListener("touchmove", onMouseOrTouchMove, {
                     passive: false,
                 });
                 document.addEventListener("touchend", handleInteractionEnd);
                 break;
             }
-            default: // nothing
+            default: // keyboard events handled separately
         }
     };
 
@@ -108,11 +110,13 @@ export const ReactSimpleRange = (props) => {
     const updateSliderValue = (event, eventType) => {
         const { max, min, vertical } = props;
         const xCoords =
-            (eventType !== "touch" ? event.pageX : event.touches[0].pageX) -
-            window.pageXOffset;
+            (eventType !== EVENT_TYPES.TOUCH
+                ? event.pageX
+                : event.touches[0].pageX) - window.pageXOffset;
         const yCoords =
-            (eventType !== "touch" ? event.pageY : event.touches[0].pageY) -
-            window.pageYOffset;
+            (eventType !== EVENT_TYPES.TOUCH
+                ? event.pageY
+                : event.touches[0].pageY) - window.pageYOffset;
         // compare position to slider length to get percentage
         let position;
         let lengthOrHeight;
