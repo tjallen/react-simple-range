@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { checkValidity, clampValue, isArrowKey } from "../utils";
+import { checkValidity, clampValue, getRatio, isArrowKey } from "../utils";
 import SliderThumb from "./SliderThumb";
 import SliderLabel from "./SliderLabel";
 import SliderTrack from "./SliderTrack";
@@ -9,9 +9,6 @@ import SliderTrack from "./SliderTrack";
 function noOp() {}
 
 export const ReactSimpleRange = (props) => {
-    const getRatio = (value, min, max) => {
-        return (Math.max(value - min, 0) * 100) / (max - min);
-    };
     const sliderRef = useRef(null);
     const [value, setValue] = useState(props.defaultValue || props.value || 0);
     const [ratio, setRatio] = useState(getRatio(value, props.min, props.max));
@@ -24,7 +21,6 @@ export const ReactSimpleRange = (props) => {
 
     const didInitialMount = useRef(false);
     const previousValue = useRef(value);
-    const previousDrag = useRef(false);
 
     useEffect(() => {
         if (didInitialMount.current === false) {
@@ -36,13 +32,17 @@ export const ReactSimpleRange = (props) => {
             props.onChange && props.onChange({ value }, props.id);
             previousValue.current = value;
         }
-        if (drag !== previousDrag.current) {
-            if (previousDrag.current === true && drag === false) {
-                props.onChangeComplete({ value }, props.id);
-            }
-            previousDrag.current = drag;
+    }, [value]);
+
+    useEffect(() => {
+        if (didInitialMount.current === false) {
+            didInitialMount.current = true;
+            return;
         }
-    }, [drag, value]);
+        if (drag === false) {
+            props.onChangeComplete({ value }, props.id);
+        }
+    }, [drag]);
 
     const getEventType = (event) => {
         if (event.touches) return "touch";
@@ -208,6 +208,8 @@ export const ReactSimpleRange = (props) => {
 
     const handleKeyDownEvent = (event) => {
         if (isArrowKey(event.keyCode) === false) return;
+        setDrag(true);
+        setDisplayLabel(true);
         event.preventDefault();
         const isPositiveKey = event.keyCode === 38 || event.keyCode === 39;
         const isNegativeKey = event.keyCode === 37 || event.keyCode === 40;
@@ -216,8 +218,6 @@ export const ReactSimpleRange = (props) => {
         } else if (isNegativeKey) {
             decrementValueByStep();
         }
-        setDrag(true);
-        setDisplayLabel(true);
     };
 
     const incrementValueByStep = () => {
