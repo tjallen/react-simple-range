@@ -23,10 +23,6 @@ export const ReactSimpleRange = (props) => {
     const previousValue = useRef(value);
 
     useEffect(() => {
-        if (didInitialMount.current === false) {
-            didInitialMount.current = true;
-            return;
-        }
         const valueChanged = value !== previousValue.current;
         if (valueChanged) {
             props.onChange && props.onChange({ value }, props.id);
