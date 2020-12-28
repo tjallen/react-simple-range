@@ -43,7 +43,8 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-styleguidist": "^11.1.4",
-        "webpack": "^5.9.0"
+        "webpack": "^5.9.0",
+        "webpack-cli": "^4.3.0"
     },
     "peerDependencies": {
         "react": "^16.8.0"
@@ -52,7 +53,7 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "start": "styleguidist server",
-        "lib": "webpack --config webpack.config-publish.babel.js",
+        "lib": "webpack",
         "pub": "npm run lib && npm publish"
     },
     "files": [
