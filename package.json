@@ -37,16 +37,7 @@
         "@testing-library/user-event": "^12.5.0",
         "babel-loader": "^8.2.2",
         "cross-env": "^2.0.1",
-        "enzyme": "^3.2.0",
-        "enzyme-adapter-react-16": "^1.1.0",
-        "eslint-config-airbnb": "^8.0.0",
-        "eslint-plugin-import": "^1.16.0",
-        "eslint-plugin-jsx-a11y": "^1.5.5",
-        "eslint-plugin-react": "^5.2.2",
-        "expect": "^1.20.2",
-        "expect-jsx": "^5.0.0",
         "jest": "^26.6.3",
-        "mocha": "^3.0.2",
         "prettier": "^2.2.1",
         "prop-types": "^15.6.0",
         "react": "^17.0.1",
@@ -55,7 +46,7 @@
         "webpack": "^5.9.0"
     },
     "peerDependencies": {
-        "react": "^15.5.4 || ^16.0.0"
+        "react": "^16.8.0"
     },
     "scripts": {
         "test": "jest",
