@@ -7,10 +7,6 @@ A simple React slider component for inputting a number value within a range.
 
 ![](http://thomjamesallen.com/images/reactsimplerange-post-crop.jpg)
 
-## Examples
-
-- For local examples check out the [Development](#development) section below
-
 ## Install
 
 ```npm install react-simple-range --save```
@@ -37,7 +33,7 @@ max | number | 100 | Maximum slider value
 step | number | 1  | Number inc/decremented when slider value is changed. The range of the slider (max - min) should be evenly divisible by this
 id | string | `null` | Identifier that is passed to the onChange handler (see below)
 onChange | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when the slider value changes - your slider will have no effect without this! See below for more information
-onChangeComplete | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called on `mouseup` or `touchend`, sends the same values as the onChange handler, the only difference is they get sent when the interaction has ended
+onChangeComplete | function | [NOOP](https://en.wikipedia.org/wiki/NOP) | Function to be called when user interaction finishes, sends the same values as the onChange handler, the only difference is they get sent when the interaction has ended
 defaultValue | number | 0 | Set initial value of slider
 vertical | boolean | `false` | Set slider to vertical when true
 verticalSliderHeight | string | `100px` | Default slider height if vertical. If your slider already has a fixed height wrapper, just set this to `100%` and the slider will fill the space
@@ -56,12 +52,9 @@ customThumb | element | `undefined` | Pass in a single React element to use as y
 
 ### onChange
 
-The onChange handler receives one argument, the current value of the slider with the following properties:
-
-Name | Type | Description
----|---|---
-value|number|Current value
-ratio|number|Percentage of bar filled
+The onChange handler receives the following arguments:
+- an object containing the current slider `value` and `ratio` (percentage of bar filled)
+- the `id` prop of the slider
 
 ### onChangeComplete
 
