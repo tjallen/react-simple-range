@@ -5,7 +5,8 @@
 
 A simple React slider component for inputting a number value within a range.
 
-![](http://thomjamesallen.com/images/reactsimplerange-post-crop.jpg)
+## ⚠️ Note: not currently being maintained ⚠️
+**Recommend using HTML input type="range" if possible. Otherwise there are a number of similar packages: react-range or react-slider should suit many purposes**
 
 ## Install
 
